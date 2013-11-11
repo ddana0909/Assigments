@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+
 namespace MusicStore.Models
 {
     using System;
@@ -20,7 +22,8 @@ namespace MusicStore.Models
         }
     
         public int OrderId { get; set; }
-        public System.DateTime OrderDate { get; set; }
+        [DisplayName("Order Date")]
+		public System.DateTime OrderDate { get; set; }
         public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -31,7 +34,8 @@ namespace MusicStore.Models
         public string Country { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public decimal Total { get; set; }
+        [DisplayName("Total Value")]
+		public decimal Total { get; set; }
     
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }

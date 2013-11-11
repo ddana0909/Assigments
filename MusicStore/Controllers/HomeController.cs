@@ -1,123 +1,78 @@
-﻿using System;
+﻿using MusicStore.Models;
+using PagedList;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using MusicStore.Models;
 
 namespace MusicStore.Controllers
 {
-    public class HomeController : Controller
-    {
-        private MvcMusicStoreEntities db = new MvcMusicStoreEntities();
+	public class HomeController : Controller
+	{
+		private readonly MvcMusicStoreEntities db;
 
-        //
-        // GET: /Home/
+		public HomeController()
+		{
+			db = new MvcMusicStoreEntities();
+		}
 
-        public ActionResult Index()
-        {
-            return View(db.Orders.ToList());
-        }
+		public ViewResult Index(DisplayOption displayOption)
+		{
+			displayOption.Init();
 
-        //
-        // GET: /Home/Details/5
+			var orders = GetOrders(displayOption);
 
-        public ActionResult Details(int id = 0)
-        {
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
+			displayOption.UpdateSortOrder();
 
-        //
-        // GET: /Home/Create
+			ViewBag.DisplayOption = displayOption;
 
-        public ActionResult Create()
-        {
-            return View();
-        }
+			return View(orders.ToPagedList(displayOption.GetPageNumber, displayOption.CurrentSize));
+		}
 
-        //
-        // POST: /Home/Create
+		public ActionResult OrderAlbums(int orderId)
+		{
+			return View(db.Orders.Find(orderId));
+		}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Orders.Add(order);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            return View(order);
-        }
 
-        //
-        // GET: /Home/Edit/5
+		protected override void Dispose(bool disposing)
+		{
+			db.Dispose();
+			base.Dispose(disposing);
+		}
 
-        public ActionResult Edit(int id = 0)
-        {
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
+		private IEnumerable<Order> GetOrders(DisplayOption displayOption)
+		{
+			var orders = db.Orders
+				.Where(or => displayOption.NameToSearch == null || or.FirstName.Contains(displayOption.NameToSearch))
+				.OrderBy(o => o.FirstName);
 
-        //
-        // POST: /Home/Edit/5
+			if (string.IsNullOrEmpty(displayOption.SortOrder) ||
+				(String.Compare(displayOption.SortOrder, "desc", StringComparison.InvariantCultureIgnoreCase) != 0 &&
+				 String.Compare(displayOption.SortOrder, "asc", StringComparison.InvariantCultureIgnoreCase) != 0))
+				displayOption.SortOrder = "asc";
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(order).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(order);
-        }
+			switch (displayOption.SortField)
+			{
+				case "Total":
+					if (String.Compare(displayOption.SortOrder, "asc", StringComparison.InvariantCultureIgnoreCase) == 0)
+						orders = orders.OrderBy(o => o.Total);
+					else
+						orders = orders.OrderByDescending(o => o.Total);
+					break;
 
-        //
-        // GET: /Home/Delete/5
+				case "Date":
+					if (String.Compare(displayOption.SortOrder, "asc", StringComparison.InvariantCultureIgnoreCase) == 0)
+						orders = orders.OrderBy(o => o.OrderDate);
+					else
+						orders = orders.OrderByDescending(o => o.OrderDate);
+					break;
+			}
 
-        public ActionResult Delete(int id = 0)
-        {
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
+			return orders;
+		}
 
-        //
-        // POST: /Home/Delete/5
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Order order = db.Orders.Find(id);
-            db.Orders.Remove(order);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
-        }
-    }
+	}
 }

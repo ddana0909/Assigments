@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+
 namespace MusicStore.Models
 {
     using System;
@@ -20,6 +22,7 @@ namespace MusicStore.Models
         }
     
         public int GenreId { get; set; }
+        [DisplayName("Genre")]
         public string Name { get; set; }
         public string Description { get; set; }
     

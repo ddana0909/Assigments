@@ -1,0 +1,31 @@
+﻿@model MusicStore.Models.Order
+
+@*@{
+	ViewBag.Title = "Albums";
+}*@
+
+@*<h2>Albums</h2>*@
+
+
+@*<div class="jumbotron">
+	<div class="row">
+		<div class="col-md-4">
+			<h3>@Html.DisplayFor(model => Model.FirstName)'s Order</h3>
+		</div>
+		
+		<div class="col-md-offset-3 col-md-5">
+			<p align="right">@Html.DisplayNameFor(model => model.OrderDate): @Html.DisplayFor(model => model.OrderDate)</p>
+			<p align="right">@Html.DisplayNameFor(model => model.Total): @Html.DisplayFor(model => model.Total)</p>	
+		</div>
+
+	</div>
+	</div>*@
+
+
+@{ 
+	Html.RenderPartial("_Album", Model.OrderDetails.Select(od => od.Album)); 
+}
+
+@*<p>
+	@Html.ActionLink("Back to List", "Index")
+</p>*@

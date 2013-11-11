@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MusicStore.Models.Album>
+
+@{
+    ViewBag.Title = "Index.cshtml";
+}
+
+<h2>Index.cshtml</h2>
+
+
+<div class="col-md-offset-1">
+@{
+    Html.RenderPartial("_Album", Model);   
+}
+
+</div>

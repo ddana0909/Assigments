@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+
 namespace MusicStore.Models
 {
     using System;
@@ -25,7 +27,8 @@ namespace MusicStore.Models
         public int ArtistId { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
-        public string AlbumArtUrl { get; set; }
+        [DisplayName("Album Cover")]
+		public string AlbumArtUrl { get; set; }
     
         public virtual Artist Artist { get; set; }
         public virtual Genre Genre { get; set; }
