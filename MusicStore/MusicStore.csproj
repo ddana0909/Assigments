@@ -135,7 +135,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
-    <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -245,11 +244,11 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <EntityDeploy Include="Models\Musicdb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Musicdb.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\kindOfBlue.jpg" />
     <Content Include="Images\placeholder.png" />
     <Content Include="Models\Music.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -299,11 +298,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Genre\Index.cshtml" />
-    <Content Include="Views\Genre\Edit.cshtml" />
     <Content Include="Views\Album\Index.cshtml" />
     <Content Include="Views\Shared\_Album.cshtml" />
     <Content Include="Views\Home\OrderAlbums.cshtml" />
+    <Content Include="Views\Home\NoAlbumFound.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

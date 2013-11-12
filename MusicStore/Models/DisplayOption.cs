@@ -17,11 +17,6 @@ namespace MusicStore.Models
 
 		public void Init()
 		{
-			if (NameToSearch != null)
-			{
-				Page = 1;
-			}
-
 			if (String.Compare(PageSize, "all", StringComparison.OrdinalIgnoreCase) == 0 || PageSize == null)
 			{
 				CurrentSize = 100;

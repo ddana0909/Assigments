@@ -16,22 +16,35 @@ namespace MusicStore.Controllers
 			db = new MvcMusicStoreEntities();
 		}
 
-		public ViewResult Index(DisplayOption displayOption)
+		public ActionResult Index(DisplayOption displayOption)
 		{
 			displayOption.Init();
 
-			var orders = GetOrders(displayOption);
+			var orders = GetOrders(displayOption);	
 
 			displayOption.UpdateSortOrder();
 
 			ViewBag.DisplayOption = displayOption;
-
+			if(orders.Count()==0)
+			ViewBag.NotFound = "No orders fit your searching criteria";
 			return View(orders.ToPagedList(displayOption.GetPageNumber, displayOption.CurrentSize));
+		
 		}
 
 		public ActionResult OrderAlbums(int orderId)
 		{
-			return View(db.Orders.Find(orderId));
+			var order = db.Orders.Find(orderId);
+			var albums = order.OrderDetails.Select(od => od.Album);
+			if (albums.Count() != 0)
+			{
+				return View(order);
+			}
+			return RedirectToAction("NoAlbumFound");
+		}
+
+		public ActionResult NoAlbumFound()
+		{
+			return View();
 		}
 
 
@@ -47,6 +60,8 @@ namespace MusicStore.Controllers
 			var orders = db.Orders
 				.Where(or => displayOption.NameToSearch == null || or.FirstName.Contains(displayOption.NameToSearch))
 				.OrderBy(o => o.FirstName);
+
+			
 
 			if (string.IsNullOrEmpty(displayOption.SortOrder) ||
 				(String.Compare(displayOption.SortOrder, "desc", StringComparison.InvariantCultureIgnoreCase) != 0 &&
@@ -69,6 +84,8 @@ namespace MusicStore.Controllers
 						orders = orders.OrderByDescending(o => o.OrderDate);
 					break;
 			}
+			
+
 
 			return orders;
 		}

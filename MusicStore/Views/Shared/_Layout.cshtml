@@ -7,15 +7,15 @@
 	@*@Scripts.Render("~/bundles/jquery")*@
 	@*@Scripts.Render("~/bundles/jqueryui")*@
 	@Scripts.Render("~/bundles/modernizr")
-	
+
 	@Styles.Render("~/Content/css")
 	@*@Styles.Render("~/Content/themes/base/css")*@
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script  type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 </head>
 <body>
-	<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+	<header class="navbar navbar-inverse navbar-fixed-top " role="banner">
 		<div class="container">
 			<div class="navbar-header">
 				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -26,20 +26,19 @@
 				</button>
 				<a class="navbar-brand">Music Store</a>
 			</div>
-			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+			<nav class=" collapse navbar-collapse " role="navigation">
 				<ul class="nav navbar-nav">
 					<li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav navbar-nav" })</li>
 					<li>@Html.ActionLink("Albums", "Index", "Album", null, new { @class = "nav navbar-nav" })</li>
-					<li>@Html.ActionLink("Genre", "Index", "Genre", null, new { @class = "nav navbar-nav" })</li>
-
-
 				</ul>
 			</nav>
 		</div>
 	</header>
+
+	@RenderSection("pageTitle", false)
+	
 	<div class="container">
 		@RenderBody()
-
 	</div>
 
 </body>

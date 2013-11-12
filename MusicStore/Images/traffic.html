@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="../css/main.css" />
+<script type="text/javascript" src="../lib/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="../lib/log4javascript_lite.js"></script>
+<script type="text/javascript" src="../lib/jquery.qtip.js"></script>
+<script type="text/javascript" src="../js/changelang.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/redirect.js"></script>
+<script type="text/javascript" src="../js/traffic.js"></script>
+<title></title>
+</head>
+
+<body>
+<div id="all_content">
+    <div id="wrapper" class="wrapper_dim">
+        <div class="wrapper_dim wrapper_filter">
+            <div id="header"></div>
+            <div class="Statistics_content"> 
+                <!--<div class="status">
+            	<div class="status_title">
+                    <h2>Traffic<script type="text/javascript">dw(dialup_label_connection_status);</script></h2>
+                </div>
+                <div class="traffic">
+                	<span class="up"><script type="text/javascript">dw(dialup_label_upload_speed);</script><label id="dupload_speed"></label></span>
+                    <span class="down"><script type="text/javascript">dw(dialup_label_download_speed);</script><label id="ddownload_speed"></label></span>
+                </div>
+            </div>-->
+                <div class="traffic_status">
+                    <div class="status_title">
+                        <h2><script type="text/javascript">dw(connection_hilink_label_traffic_statistics);</script></h2>
+                    </div>
+                    <table width="790" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th width="32%"><script type="text/javascript">dw(common_type);</script></th>
+                            <th width="34%"><script type="text/javascript">dw(traffic_label_current_volume);</script></th>
+                            <th width="34%"><script type="text/javascript">dw(traffic_label_history_volume);</script></th>
+                        </tr>
+                        <tr>
+                            <td width="32%"><script type="text/javascript">dw(IDS_common_download);</script></td>
+                            <td width="34%" id="current_download"></td>
+                            <td width="34%" id="history_download"></td>
+                        </tr>
+                        <tr>
+                            <td><script type="text/javascript">dw(IDS_common_upload);</script></td>
+                            <td id="current_upload"></td>
+                            <td id="history_upload"></td>
+                        </tr>
+                        <tr>
+                            <td><script type="text/javascript">dw(common_label_total);</script></td>
+                            <td id="total_current"></td>
+                            <td id="total_history"></td>
+                        </tr>
+                        <tr>
+                            <td><script type="text/javascript">dw(dialup_label_duration);</script></td>
+                            <td id="current_duration"></td>
+                            <td id="history_duration"></td>
+                        </tr>
+                    </table>
+                    <div class="note"><script type="text/javascript">dw(strid_stat_hint_declaration_volume);</script></div>
+                    <div id="clear_history" class="clear_history"> 
+                        <script type="text/javascript">
+                            create_button(common_clear_history, "button_clear_history");
+                        </script> 
+                    </div>
+                </div>
+                <div id="footer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<noscript><div class="noscript_text">Your browser does not support JavaScript.</div></noscript>
+</body>
+</html>
