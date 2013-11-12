@@ -25,8 +25,12 @@ namespace MusicStore.Controllers
 			displayOption.UpdateSortOrder();
 
 			ViewBag.DisplayOption = displayOption;
-			if(orders.Count()==0)
-			ViewBag.NotFound = "No orders fit your searching criteria";
+
+			if(!orders.Any())
+			{
+				ViewBag.NotFound = "No orders fit your searching criteria";
+			}
+			
 			return View(orders.ToPagedList(displayOption.GetPageNumber, displayOption.CurrentSize));
 		
 		}
