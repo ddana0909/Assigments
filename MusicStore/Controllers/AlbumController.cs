@@ -34,7 +34,12 @@ namespace MusicStore.Controllers
             }
         }
 
-        protected override void Dispose(bool disposing)
+	    public ActionResult IndexArtist(int id = 0)
+	    {
+		    return View();
+	    }
+
+	    protected override void Dispose(bool disposing)
         {
             db.Dispose();
             base.Dispose(disposing);

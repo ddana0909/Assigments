@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width" />
 	<title>@ViewBag.Title</title>
 	@*@Scripts.Render("~/bundles/jquery")*@
-	@*@Scripts.Render("~/bundles/jqueryui")*@
+	@Scripts.Render("~/bundles/jqueryval")
 	@Scripts.Render("~/bundles/modernizr")
 
 	@Styles.Render("~/Content/css")
@@ -30,6 +30,8 @@
 				<ul class="nav navbar-nav">
 					<li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav navbar-nav" })</li>
 					<li>@Html.ActionLink("Albums", "Index", "Album", null, new { @class = "nav navbar-nav" })</li>
+					<li>@Html.ActionLink("Artist", "Index", "Artist", null, new { @class = "nav navbar-nav" })</li>
+					<li>@Html.ActionLink("Genre", "Index", "Genre", null, new { @class = "nav navbar-nav" })</li>
 				</ul>
 			</nav>
 		</div>

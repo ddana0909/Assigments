@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MusicStore.Models.Artist>  
+	@foreach (var item in Model)
+ {
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Name)
+			</td>
+			<td>
+				<a class="btn btn-default btn-xs" href="@Url.Action("IndexArtist", "Album", new { @item.ArtistId })">Albums 
+				 <span class="badge">@item.Albums.Count</span>
+				</a>
+			</td>
+			<td>
+			@Html.ActionLink("Edit", "Edit", new { id = item.ArtistId }) |
+		    @Html.ActionLink("Details", "Details", new { id = item.ArtistId }) |
+		    @Html.ActionLink("Delete", "Delete", new { id = item.ArtistId })
+
+			</td>
+
+		</tr>
+ }
+

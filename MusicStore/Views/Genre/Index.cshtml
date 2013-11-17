@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MusicStore.Models.Genre>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+	@Html.ActionLink("Create New", "Create")
+</p>
+<div class="col-md-offset-1 row">
+	@using (@Ajax.BeginForm("Index", "Genre", new AjaxOptions{InsertionMode=InsertionMode.Replace, UpdateTargetId = "Genres",LoadingElementId = "loader"}, new { @class = "form-horizontal", @role="form" }))
+	{
+		<div class="col-md-3">
+			@Html.TextBox("chosenGenre", null, new { @class = "form-control", onchange = "$(this.form).submit()" })
+		</div>
+		<div class="col-md-2">
+			<button class="btn btn-default form-control" type="submit">Search</button>
+		</div>
+
+	}
+</div>
+<br/>
+<div  id="Genres">
+	@{
+		Html.RenderPartial("_GenreList", Model);
+	}
+</div>
+
+<div class="text-center" style="display: none">
+	Loading...<img src="~/Images/ajax-loader.gif" />
+</div>

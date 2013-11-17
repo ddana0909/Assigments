@@ -135,6 +135,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\ArtistController.cs" />
+    <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -248,6 +250,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Musicdb.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\ajax-loader.gif" />
     <Content Include="Images\kindOfBlue.jpg" />
     <Content Include="Images\placeholder.png" />
     <Content Include="Models\Music.Context.tt">
@@ -302,6 +305,19 @@
     <Content Include="Views\Shared\_Album.cshtml" />
     <Content Include="Views\Home\OrderAlbums.cshtml" />
     <Content Include="Views\Home\NoAlbumFound.cshtml" />
+    <Content Include="Views\Artist\Index.cshtml" />
+    <Content Include="Views\Artist\Details.cshtml" />
+    <Content Include="Views\Artist\Create.cshtml" />
+    <Content Include="Views\Artist\Edit.cshtml" />
+    <Content Include="Views\Artist\Delete.cshtml" />
+    <Content Include="Views\Album\IndexArtist.cshtml" />
+    <Content Include="Views\Shared\_Artists.cshtml" />
+    <Content Include="Views\Genre\Index.cshtml" />
+    <Content Include="Views\Genre\Details.cshtml" />
+    <Content Include="Views\Genre\Create.cshtml" />
+    <Content Include="Views\Genre\Edit.cshtml" />
+    <Content Include="Views\Genre\Delete.cshtml" />
+    <Content Include="Views\Genre\_GenreList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
