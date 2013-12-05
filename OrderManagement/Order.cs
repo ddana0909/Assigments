@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace OrderManagement
 {
     using System;
@@ -22,12 +25,18 @@ namespace OrderManagement
         public int OrderID { get; set; }
         public string CustomerID { get; set; }
         public Nullable<int> EmployeeID { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> OrderDate { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> RequiredDate { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayName("Shipped")]
         public Nullable<System.DateTime> ShippedDate { get; set; }
         public Nullable<int> ShipVia { get; set; }
         public Nullable<decimal> Freight { get; set; }
+        [DisplayName("Ship Name")]
         public string ShipName { get; set; }
+        [DisplayName("Shipping Address")]
         public string ShipAddress { get; set; }
         public string ShipCity { get; set; }
         public string ShipRegion { get; set; }

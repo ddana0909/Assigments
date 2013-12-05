@@ -3,9 +3,6 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -38,18 +35,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ShipAddress)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipCity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipRegion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipPostalCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipCountry)
-        </th>
+        
         <th></th>
     </tr>
 
@@ -80,20 +66,13 @@
             @Html.DisplayFor(modelItem => item.ShipName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ShipAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipCity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipRegion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipPostalCode)
-        </td>
-        <td>
+            @Html.DisplayFor(modelItem => item.ShipAddress),
+            @Html.DisplayFor(modelItem => item.ShipCity),
+            @Html.DisplayFor(modelItem => item.ShipRegion),
+            @Html.DisplayFor(modelItem => item.ShipPostalCode),
             @Html.DisplayFor(modelItem => item.ShipCountry)
         </td>
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.OrderID }) |
             @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
