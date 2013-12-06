@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -17,6 +18,12 @@ namespace OrderManagement.Controllers
             
             
             return View(orders.ToList());
+        }
+
+        public ActionResult EmployeeDetails(int id=0)
+        {
+            Employee emp = db.Employees.Find(id);
+            return PartialView("_EmployeeDetails",emp);
         }
 
         public ActionResult Details(int id = 0)

@@ -24,7 +24,7 @@ namespace OrderManagement
         }
     
         public int EmployeeID { get; set; }
-        [DisplayName("Employee")]
+        [DisplayName("Employee Name")]
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Title { get; set; }

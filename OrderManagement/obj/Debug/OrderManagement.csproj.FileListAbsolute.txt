@@ -1,3 +1,7 @@
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\Content\bootstrap-theme.css
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\Content\bootstrap-theme.min.css
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\Content\bootstrap.css
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\Content\bootstrap.min.css
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\OrderManagement.dll
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\OrderManagement.pdb
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\Antlr3.Runtime.dll
@@ -25,10 +29,6 @@ D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\Orde
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\System.Web.WebPages.xml
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\System.Web.WebPages.Deployment.xml
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\System.Web.WebPages.Razor.xml
-D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.csprojResolveAssemblyReference.cache
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.dll
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.pdb
-D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\Content\bootstrap-theme.css
-D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\Content\bootstrap-theme.min.css
-D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\Content\bootstrap.css
-D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\Content\bootstrap.min.css
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.csprojResolveAssemblyReference.cache

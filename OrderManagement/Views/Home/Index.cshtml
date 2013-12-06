@@ -3,13 +3,58 @@
 @{
     ViewBag.Title = "Index";
 }
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+@section Scripts
+{
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    <script>
+        /* Handles listing of Orders when clicking on Customer */
+        function getEmployeeDetails(empId) {
+                                     $.ajax({
+                url: '@Url.Action("EmployeeDetails")',
+                data: { id: empId },
+                success: function (data) {
+                    $('#empDetailsModal').modal("show");
+                    $("#empDetails").html(data).modal("show");
+                }
+            });
+          
+         @*  $('#empDetails').load("@Url.Action("EmployeeDetails")", { id: empId }, function() {
+                $('#empDetailsModal').modal({
+                    keyboard: true,
+                    backdrop: 'static',
+                },'show');
+
+            });*@
+            
+        }
+
+    </script>
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<div id="empDetailsModal" class="modal">
+    <br/>
+    <br/>
+    <br/>
+   
+    <div class="col-md-offset-3 col-md-6" id="empDetails">
+        
+    </div>
+            
+</div>
 <table class="table table-condensed table-hover table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Customer.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.ContactName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Employee.LastName)
@@ -35,50 +80,59 @@
         <th>
             @Html.DisplayNameFor(model => model.ShipAddress)
         </th>
-        
+     
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employee.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequiredDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShippedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Shipper.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Freight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipAddress),
-            @Html.DisplayFor(modelItem => item.ShipCity),
-            @Html.DisplayFor(modelItem => item.ShipRegion),
-            @Html.DisplayFor(modelItem => item.ShipPostalCode),
-            @Html.DisplayFor(modelItem => item.ShipCountry)
-        </td>
+    @foreach (var item in Model) {
+        <tr onclick="getEmployeeDetails(@item.EmployeeID)" style="cursor:pointer">
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.ContactName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.LastName)
+            </td>
+       
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequiredDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shipper.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Freight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipAddress),
+                @Html.DisplayFor(modelItem => item.ShipCity),
+                @Html.DisplayFor(modelItem => item.ShipRegion),
+                @Html.DisplayFor(modelItem => item.ShipPostalCode),
+                @Html.DisplayFor(modelItem => item.ShipCountry)
+            </td>
         
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.OrderID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
 
+            </td>
+        
+        </tr>
+       
+        
+    }
+     
 </table>
+
