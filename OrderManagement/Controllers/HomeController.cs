@@ -112,18 +112,16 @@ namespace OrderManagement.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
+            var order = db.Orders.Where(o=>o.OrderID==id);
+            order.Include(o => o.Customer);
+            
+            return PartialView("_DeleteDetails", order.ToList());
         }
 
         //
         // POST: /Home/Delete/5
 
-        [HttpPost, ActionName("Delete")]
+        //[HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
             Order order = db.Orders.Find(id);

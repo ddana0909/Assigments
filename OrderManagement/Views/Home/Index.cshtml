@@ -1,8 +1,15 @@
 ﻿@model IEnumerable<OrderManagement.Order>
-
-@{
+<div id="page">@{
     ViewBag.Title = "Index";
 }
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@{
+    Html.RenderPartial("_Orders", Model);   
+}
+    </div>
+
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 
@@ -13,22 +20,56 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <script>
-        function getEmployeeDetails(empId)
-        {
-         $.ajax({
-                 url: '@Url.Action("EmployeeDetails")',
-                 data: { id: empId },
-                 success: function (data) {
-                            $('#empDetailsModal').modal("show");
-                            $("#empDetails").html(data).modal("show");
-                            }
-                });
+        function getEmployeeDetails(empId) {
+            $.ajax({
+                url: '@Url.Action("EmployeeDetails")',
+                data: { id: empId },
+                success: function(data) {
+                    $('#empDetailsModal').modal("show");
+                    $("#empDetails").html(data).modal("show");
+                }
+            });
         }
+
+        function showDeleteDialog(ordId)
+        {
+            $.ajax({
+                url: '@Url.Action("Delete")',
+                    data: { id: ordId },
+                    success: function (data) {
+                    
+                        $('#myModal').modal("show");
+                        $("#orderInfo").html(data).modal("show");
+                    }
+                });
+            
+            
+         }
+         
+        
+
+        function del()
+        {
+            var id = $('#myModal').data('id');
+            $.ajax({
+                url: '@Url.Action("DeleteConfirmed")',
+                 data: { id: id },
+                 success: function (data) {
+                     $('#myModal').modal('hide');
+                     $('#page').show();
+                 }
+             });
+            
+        }
+
+        function close()
+        {
+            $('#myModal').modal('hide');
+        }
+
     </script>
 }
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <div id="empDetailsModal" class="modal">
     <br/>
     <br/>
@@ -37,7 +78,9 @@
     </div>            
 </div>
 
-@{
-    Html.RenderPartial("_Orders", Model);   
-}
+<div id="myModal" class="modal" >
+    <div id="orderInfo">
+        
+    </div>
+</div>
 
