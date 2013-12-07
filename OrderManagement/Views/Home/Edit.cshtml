@@ -4,9 +4,8 @@
     ViewBag.Title = "Edit Order";
 }
 <head>
-   <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen"
-          href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 
 @using (Html.BeginForm())
@@ -29,9 +28,9 @@
 
                 @Html.LabelFor(model => model.OrderDate)
 
-                <div id="datetimepicker">
-                  @Html.TextBoxFor(model => model.OrderDate, new { @class = "form-control input-sm input-append add-on" })
-                </div>
+              
+                  @Html.TextBoxFor(model => model.OrderDate, new { @class = "form-control input-sm", id="datepicker"})
+              
                  
               
                  @Html.ValidationMessageFor(model => model.OrderDate)
@@ -40,14 +39,14 @@
 
                 @Html.LabelFor(model => model.RequiredDate)
                
-                    @Html.TextBoxFor(model => model.RequiredDate, new { @class = "form-control input-sm" })
+                    @Html.TextBoxFor(model => model.RequiredDate, new { @class = "form-control input-sm", id="datepicker1" })
              
                 @Html.ValidationMessageFor(model => model.RequiredDate)
             </div>
             <div class="form-group input-group-sm">
                 @Html.LabelFor(model => model.ShippedDate)
                
-                @Html.TextBoxFor(model => model.ShippedDate, new { @class = "form-control input-sm " })
+                @Html.TextBoxFor(model => model.ShippedDate, new { @class = "form-control input-sm", id="datepicker2" })
                  
                 @Html.ValidationMessageFor(model => model.ShippedDate)
             </div>
@@ -117,24 +116,14 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript"
-        src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-    </script>
-    <script type="text/javascript"
-        src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
-    </script>
-    <script type="text/javascript"
-        src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-    </script>
-    <script type="text/javascript"
-        src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-    </script>
-    <script type="text/javascript">
-        $('#datetimepicker').datetimepicker({
-            language: 'en',
-            format: 'MM/dd/yyyy hh:mm:ss',
-            pickTime: false
-        });
-        
-    </script>
+ <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script>
+$(function() {
+    $("#datepicker").datepicker();
+    $("#datepicker1").datepicker();
+    $("#datepicker2").datepicker();
+});
+</script>
 }
