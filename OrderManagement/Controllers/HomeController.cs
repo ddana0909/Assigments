@@ -84,7 +84,7 @@ namespace OrderManagement.Controllers
                 return HttpNotFound();
             }
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "CompanyName", order.CustomerID);
-            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName", order.EmployeeID);
+            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName",order.EmployeeID);
             ViewBag.ShipVia = new SelectList(db.Shippers, "ShipperID", "CompanyName", order.ShipVia);
             return View(order);
         }

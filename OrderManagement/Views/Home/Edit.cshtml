@@ -3,125 +3,150 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+<head>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen"
+     href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+ </head>
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.OrderID)
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CustomerID, "Customer")
+                @Html.DropDownList("CustomerID", (SelectList)ViewBag.CustomerID, String.Empty, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmployeeID, "Employee")
 
-    <fieldset>
-        <legend>Order</legend>
+                @Html.DropDownList("EmployeeID", (SelectList)ViewBag.EmployeeID, String.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmployeeID)
+            </div>
+            <div class="form-group" >
+                @Html.LabelFor(model => model.OrderDate)
+                <div class="row">
+                    <div id="datetimepicker" class="input-append">
+                        <input type="text"></input>
+                        <span class="add-on">
+                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                        </span>
+                    </div>
+                    </div>
+               @Html.ValidationMessageFor(model => model.OrderDate)
+            </div>
+            <div class="row">
+            </div>
 
-        @Html.HiddenFor(model => model.OrderID)
+            <div class="row">
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CustomerID, "Customer")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("CustomerID", String.Empty)
-            @Html.ValidationMessageFor(model => model.CustomerID)
-        </div>
+                @Html.LabelFor(model => model.RequiredDate)
+            </div>
+            <div class="row">
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.EmployeeID, "Employee")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("EmployeeID", String.Empty)
-            @Html.ValidationMessageFor(model => model.EmployeeID)
-        </div>
+                @Html.EditorFor(model => model.RequiredDate)
+                @Html.ValidationMessageFor(model => model.RequiredDate)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.OrderDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.OrderDate)
-            @Html.ValidationMessageFor(model => model.OrderDate)
-        </div>
+            <div class="row">
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.RequiredDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.RequiredDate)
-            @Html.ValidationMessageFor(model => model.RequiredDate)
-        </div>
+                @Html.LabelFor(model => model.ShippedDate)
+            </div>
+            <div class="row">
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ShippedDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ShippedDate)
-            @Html.ValidationMessageFor(model => model.ShippedDate)
-        </div>
+                @Html.EditorFor(model => model.ShippedDate)
+                @Html.ValidationMessageFor(model => model.ShippedDate)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ShipVia, "Shipper")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("ShipVia", String.Empty)
-            @Html.ValidationMessageFor(model => model.ShipVia)
-        </div>
+            <div class="row">
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Freight)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Freight)
-            @Html.ValidationMessageFor(model => model.Freight)
-        </div>
+                @Html.LabelFor(model => model.ShipVia, "Shipper")
+            </div>
+            <div class="row">
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ShipName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ShipName)
-            @Html.ValidationMessageFor(model => model.ShipName)
-        </div>
+                @Html.DropDownList("ShipVia", String.Empty)
+                @Html.ValidationMessageFor(model => model.ShipVia)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ShipAddress)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ShipAddress)
-            @Html.ValidationMessageFor(model => model.ShipAddress)
-        </div>
+            <div class="row">
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ShipCity)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ShipCity)
-            @Html.ValidationMessageFor(model => model.ShipCity)
-        </div>
+                @Html.LabelFor(model => model.Freight)
+            </div>
+            <div class="row">
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ShipRegion)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ShipRegion)
-            @Html.ValidationMessageFor(model => model.ShipRegion)
-        </div>
+                @Html.EditorFor(model => model.Freight)
+                @Html.ValidationMessageFor(model => model.Freight)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ShipPostalCode)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ShipPostalCode)
-            @Html.ValidationMessageFor(model => model.ShipPostalCode)
-        </div>
+            <div class="row">
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ShipCountry)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ShipCountry)
-            @Html.ValidationMessageFor(model => model.ShipCountry)
-        </div>
+                @Html.LabelFor(model => model.ShipName)
+            </div>
+            <div class="row">
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
+                @Html.EditorFor(model => model.ShipName)
+                @Html.ValidationMessageFor(model => model.ShipName)
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+
+                @Html.LabelFor(model => model.ShipAddress)
+            </div>
+            <div class="row">
+
+                @Html.EditorFor(model => model.ShipAddress)
+                @Html.ValidationMessageFor(model => model.ShipAddress)
+            </div>
+
+            <div class="row">
+
+                @Html.LabelFor(model => model.ShipCity)
+            </div>
+            <div class="row">
+
+                @Html.EditorFor(model => model.ShipCity)
+                @Html.ValidationMessageFor(model => model.ShipCity)
+            </div>
+
+            <div class="row">
+
+                @Html.LabelFor(model => model.ShipRegion)
+            </div>
+            <div class="row">
+                @Html.EditorFor(model => model.ShipRegion)
+                @Html.ValidationMessageFor(model => model.ShipRegion)
+            </div>
+
+            <div class="row">
+
+                @Html.LabelFor(model => model.ShipPostalCode)
+            </div>
+            <div class="row">
+
+                @Html.EditorFor(model => model.ShipPostalCode)
+                @Html.ValidationMessageFor(model => model.ShipPostalCode)
+            </div>
+
+            <div class="row">
+
+                @Html.LabelFor(model => model.ShipCountry)
+            </div>
+            <div class="row">
+
+                @Html.EditorFor(model => model.ShipCountry)
+                @Html.ValidationMessageFor(model => model.ShipCountry)
+            </div>
+
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </div>
+    </div>   
+
 }
 
 <div>
@@ -130,4 +155,23 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+     <script type="text/javascript"
+     src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script> 
+    <script type="text/javascript"
+     src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+    </script>
+    <script type="text/javascript">
+      $('#datetimepicker').datetimepicker({
+          language: 'en',
+          format: 'dd/MM/yyyy hh:mm:ss',
+          pickTime: false
+      });
+    </script>
 }
