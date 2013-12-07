@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<OrderManagement.Order>
-<div id="page">@{
-    ViewBag.Title = "Index";
-}
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@{
-    Html.RenderPartial("_Orders", Model);   
-}
-    </div>
+<div id="page">
+    @{
+              ViewBag.Title = "Index";
+          }
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    @{
+        Html.RenderPartial("_Orders", Model);   
+    }
+</div>
 
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
@@ -34,32 +35,28 @@
         function showDeleteDialog(ordId)
         {
             $.ajax({
-                url: '@Url.Action("Delete")',
+                    
+                    url: '@Url.Action("Delete")',
                     data: { id: ordId },
                     success: function (data) {
-                    
-                        $('#myModal').modal("show");
+                        $('#myModal').data('id', ordId).modal("show");
+                        //$('#myModal').modal("show");
                         $("#orderInfo").html(data).modal("show");
                     }
-                });
-            
-            
+                });         
          }
          
-        
-
         function del()
         {
             var id = $('#myModal').data('id');
             $.ajax({
-                url: '@Url.Action("DeleteConfirmed")',
+                type: "POST",
+                url: '@Url.Action("Delete")',
                  data: { id: id },
-                 success: function (data) {
-                     $('#myModal').modal('hide');
-                     $('#page').show();
+                 success: function () {
+                     $('#myModal').modal('hide');               
                  }
-             });
-            
+             });          
         }
 
         function close()
