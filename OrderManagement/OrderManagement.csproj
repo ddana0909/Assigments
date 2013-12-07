@@ -370,6 +370,7 @@
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
     <Content Include="Views\Shared\_EmployeeDetails.cshtml" />
+    <Content Include="Views\Shared\_Orders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

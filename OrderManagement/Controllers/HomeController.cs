@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -8,23 +7,31 @@ namespace OrderManagement.Controllers
 {
     public class HomeController : Controller
     {
-        private nwndEntities db = new nwndEntities();
+        private readonly nwndEntities db;
 
-
-
-        public ActionResult Index()
+        public HomeController()
         {
-            var orders = db.Orders.Include(o => o.Customer).Include(o => o.Employee).Include(o => o.Shipper);
-            
-            
-            return View(orders.ToList());
+            db = new nwndEntities();
         }
 
-        public ActionResult EmployeeDetails(int id=0)
+        public ActionResult Index(int id = 0)
+        {
+            if (id != 0)
+            {
+                var ord = db.Orders.Where(o => o.EmployeeID == id);
+                var orders = ord.Include(o => o.Customer).Include(o => o.Employee).Include(o => o.Shipper);
+                return View(orders.ToList());
+            }
+            return View(db.Orders.Include(o => o.Customer).Include(o => o.Employee).Include(o => o.Shipper).ToList());
+        }
+    
+        public ActionResult EmployeeDetails(int id = 0)
         {
             Employee emp = db.Employees.Find(id);
-            return PartialView("_EmployeeDetails",emp);
+            ViewBag.empName = db.Employees.Find(emp.ReportsTo).FirstName + " " + db.Employees.Find(emp.ReportsTo).LastName; //must be changed
+            return PartialView("_EmployeeDetails", emp);
         }
+
 
         public ActionResult Details(int id = 0)
         {
