@@ -18,7 +18,7 @@ namespace OrderManagement.Controllers
 
         public ActionResult Index(int pageNumber = 1, int employeeId = 0)
         {
-            var orders = _db.Orders.Where(o => o.EmployeeID == employeeId || employeeId == 0).OrderByDescending(o => o.OrderDate);
+            var orders = _db.Orders.Where(o => o.EmployeeID == employeeId || employeeId == 0).OrderBy(o => o.OrderID);
 
             return View(orders.ToPagedList(pageNumber, PageSize));
         }

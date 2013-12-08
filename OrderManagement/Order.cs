@@ -32,16 +32,16 @@ namespace OrderManagement
 
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
         [DataType(DataType.Date)]
-        [DisplayName("Ordered on")]
+        [DisplayName("Ordered")]
         public Nullable<System.DateTime> OrderDate { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayName("Required Date")]
+        [DisplayName("Required")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
         public Nullable<System.DateTime> RequiredDate { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayName("Shipped on")]
+        [DisplayName("Shipped")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
         public Nullable<System.DateTime> ShippedDate { get; set; }
 

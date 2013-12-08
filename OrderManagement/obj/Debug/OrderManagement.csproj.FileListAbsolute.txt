@@ -32,7 +32,6 @@ D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\Orde
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.dll
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.pdb
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\Scripts\jquery.js
-D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.csprojResolveAssemblyReference.cache
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\PagedList.dll
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\PagedList.Mvc.dll
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\PagedList.xml
@@ -76,3 +75,44 @@ C:\Users\adrian.barglazan\Desktop\Assignments-ca2\OrderManagement\bin\System.Web
 C:\Users\adrian.barglazan\Desktop\Assignments-ca2\OrderManagement\obj\Debug\OrderManagement.csprojResolveAssemblyReference.cache
 C:\Users\adrian.barglazan\Desktop\Assignments-ca2\OrderManagement\obj\Debug\OrderManagement.dll
 C:\Users\adrian.barglazan\Desktop\Assignments-ca2\OrderManagement\obj\Debug\OrderManagement.pdb
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\Content\bootstrap-theme.css
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\Content\bootstrap-theme.min.css
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\Content\bootstrap.css
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\Content\bootstrap.min.css
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\Scripts\jquery.js
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\OrderManagement.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\OrderManagement.pdb
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\Antlr3.Runtime.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\EntityFramework.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\Newtonsoft.Json.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\PagedList.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\PagedList.Mvc.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Net.Http.Formatting.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.Http.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.Http.WebHost.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.Mvc.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.Optimization.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.Providers.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.Razor.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.WebPages.Deployment.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.WebPages.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.WebPages.Razor.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\WebGrease.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\PagedList.xml
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\PagedList.Mvc.xml
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\EntityFramework.xml
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\Newtonsoft.Json.xml
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Net.Http.Formatting.xml
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.Http.xml
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.Http.WebHost.xml
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.Mvc.xml
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.Razor.xml
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.WebPages.xml
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.WebPages.Deployment.xml
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\bin\System.Web.WebPages.Razor.xml
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\obj\Debug\OrderManagement.csprojResolveAssemblyReference.cache
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\obj\Debug\OrderManagement.dll
+C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\obj\Debug\OrderManagement.pdb
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.Properties.Resources.resources
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.csproj.GenerateResource.Cache
