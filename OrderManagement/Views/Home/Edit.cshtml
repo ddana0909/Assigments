@@ -5,9 +5,8 @@
 }
 <head>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+@*<link rel="stylesheet" href="/resources/demos/style.css">*@
 </head>
-
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
@@ -25,29 +24,21 @@
                 @Html.ValidationMessageFor(model => model.EmployeeID)
             </div>
             <div class="form-group input-group-sm">
-
                 @Html.LabelFor(model => model.OrderDate)
 
-              
-                  @Html.TextBoxFor(model => model.OrderDate, new { @class = "form-control input-sm", id="datepicker"})
-              
-                 
-              
-                 @Html.ValidationMessageFor(model => model.OrderDate)
+                @Html.TextBoxFor(model => model.OrderDate, new { @class = "form-control input-sm", id = "datepicker" })
+                @Html.ValidationMessageFor(model => model.OrderDate)
             </div>
             <div class="form-group input-group-sm">
-
                 @Html.LabelFor(model => model.RequiredDate)
-               
-                    @Html.TextBoxFor(model => model.RequiredDate, new { @class = "form-control input-sm", id="datepicker1" })
-             
+
+                @Html.TextBoxFor(model => model.RequiredDate, new { @class = "form-control input-sm", id = "datepicker1" })
                 @Html.ValidationMessageFor(model => model.RequiredDate)
             </div>
             <div class="form-group input-group-sm">
                 @Html.LabelFor(model => model.ShippedDate)
-               
-                @Html.TextBoxFor(model => model.ShippedDate, new { @class = "form-control input-sm", id="datepicker2" })
-                 
+
+                @Html.TextBoxFor(model => model.ShippedDate, new { @class = "form-control input-sm", id = "datepicker2" })
                 @Html.ValidationMessageFor(model => model.ShippedDate)
             </div>
             <div class="form-group input-group-sm">
@@ -57,7 +48,6 @@
                 @Html.ValidationMessageFor(model => model.ShipVia)
             </div>
             <div class="form-group input-group-sm">
-
                 @Html.LabelFor(model => model.Freight)
 
                 @Html.TextBoxFor(model => model.Freight, new { @class = "form-control input-sm" })
@@ -72,7 +62,6 @@
         </div>
         <div class="col-md-offset-1 col-md-4">
             <div class="form-group input-group-sm">
-
                 @Html.LabelFor(model => model.ShipAddress)
 
                 @Html.TextBoxFor(model => model.ShipAddress, new { @class = "form-control input-sm" })
@@ -103,27 +92,26 @@
                 @Html.ValidationMessageFor(model => model.ShipCountry)
             </div>
             <p>
-                <input class="btn btn-default"type="submit" value="Save" />
+                <input class="btn btn-default" type="submit" value="Save" />
             </p>
         </div>
     </div>   
 
 }
-
 <div class="col-md-offset-1">
     @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
- <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
-<script>
-$(function() {
-    $("#datepicker").datepicker();
-    $("#datepicker1").datepicker();
-    $("#datepicker2").datepicker();
-});
-</script>
+    <script>
+        $(function () {
+            $('#datepicker').datepicker();
+            $('#datepicker1').datepicker();
+            $('#datepicker2').datepicker();
+        });
+    </script>
 }

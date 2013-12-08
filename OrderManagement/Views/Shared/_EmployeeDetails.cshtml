@@ -9,22 +9,19 @@
 
         <div class="row">
             <div class="col-md-4">
-                  @{ byte[] photo = Model.Photo;
-                        string imageSrc = null;
-                       if (photo != null)
-                       {
-                           var ms = new MemoryStream();
-                           ms.Write(photo, 78, photo.Length - 78); // strip out 78 byte OLE header (don't need to do this for normal images)
-                           string imageBase64 = Convert.ToBase64String(ms.ToArray() );
-                           imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
-                       }
-                     }
-                    <img src="@imageSrc" alt="Employee Photo" />                
-                
-                @*<img src="@Url.Content(@Model.PhotoPath)" alt="Employee Image" />*@
+                @{ byte[] photo = Model.Photo;
+                   string imageSrc = null;
+                   if (photo != null)
+                   {
+                       var ms = new MemoryStream();
+                       ms.Write(photo, 78, photo.Length - 78); // strip out 78 byte OLE header (don't need to do this for normal images)
+                       string imageBase64 = Convert.ToBase64String(ms.ToArray());
+                       imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                   }
+                }
+                <img src="@imageSrc" alt="Employee Photo" />
             </div>
             <div class="col-md-8">
-
                 <div class="row">
                     <div class="col-md-3">
                         <strong>@Html.DisplayNameFor(model => model.BirthDate)</strong>
@@ -77,9 +74,8 @@
                         @ViewBag.empName
                     </div>
                 </div>
-            </div>  
+            </div>
         </div>
-
         <div>
             <strong>@Html.DisplayNameFor(model => model.Notes)</strong>
         </div>
@@ -89,9 +85,7 @@
 
     </div>
     <div class="modal-footer">
-        
-        @Html.ActionLink("Show Assigned Orders","Index","Home",new{id=Model.EmployeeID},new {@class="btn btn-info"})
-       
+        @Html.ActionLink("Show Assigned Orders", "Index", "Home", new { id = Model.EmployeeID }, new { @class = "btn btn-info" })
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
 </div>

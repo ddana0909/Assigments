@@ -101,18 +101,22 @@ namespace OrderManagement.Controllers
             return PartialView("_DeleteDetails", order.ToList());
         }
 
-        [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
             var order = db.Orders.Find(id);
             if (order != null)
             {
+                var orderDetails = db.Order_Details.Where(o => o.OrderID == id);
+                foreach (var orderDetail in orderDetails)
+                {
+                    db.Order_Details.Remove(orderDetail);
+                }
                 db.Orders.Remove(order);
                 db.SaveChanges();
-               
+
             }
 
-            return RedirectToAction("Index");        
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -1,7 +1,5 @@
 ﻿@model IEnumerable<OrderManagement.Order>
-<script>
-    
-</script>
+
 <table class="table table-condensed table-hover table-striped">
     <tr>
         <th>
@@ -76,18 +74,12 @@
                 @Html.DisplayFor(modelItem => item.ShipPostalCode),
                 @Html.DisplayFor(modelItem => item.ShipCountry)
             </td>
-
             <td id="optionSquare">
                 @Html.ActionLink("Edit", "Edit", "Home", new { id = item.OrderID }, new { @class = "btn btn-default btn-xs" })
                 @Html.ActionLink("Details", "Details", "Home", new { id = item.OrderID }, new { @class = "btn btn-default btn-xs" })
                 <button class="btn btn-default btn-xs" onclick="showDeleteDialog(@item.OrderID)" style="cursor:pointer">Delete</button>
-
-                @*  @Html.ActionLink("Delete", "Delete","Home",new { id=item.OrderID },new {@class="btn btn-default btn-xs"})*@
             </td>
-
-        </tr>
-       
-        
+        </tr>      
     }
 
 </table>
