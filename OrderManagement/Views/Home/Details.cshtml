@@ -1,106 +1,137 @@
 ﻿@model OrderManagement.Order
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Order "+ @Model.OrderID;
 }
+<div class="row">
+  
+    <div class="col-md-offset-1 col-md-4">
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.Customer.CompanyName):
+            </strong>
+            @Html.DisplayFor(model => model.Customer.CompanyName)
+        </div>
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.Employee.FullName):
+            </strong>
+            @Html.DisplayFor(model => model.Employee.FullName)
+        </div>
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.RequiredDate):
+            </strong>
+            @Html.DisplayFor(model => model.RequiredDate)
+        </div>
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.OrderDate):
+            </strong>
+            @Html.DisplayFor(model => model.OrderDate)
+        </div>
+        <br />
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.ShippedDate):
+            </strong>
+            @Html.DisplayFor(model => model.ShippedDate)
+        </div>
 
-<h2>Details</h2>
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.Shipper.CompanyName):
+            </strong>
+            @Html.DisplayFor(model => model.Shipper.CompanyName)
+        </div>
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.Freight):
+            </strong>
+            @Html.DisplayFor(model => model.Freight)
+        </div>
+        <br />
+        <h4>Detailed Shipping Address</h4>
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.ShipName)
+            </strong>
+            @Html.DisplayFor(model => model.ShipName)
+        </div>
 
-<fieldset>
-    <legend>Order</legend>
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.ShipAddress)
+            </strong>
+            @Html.DisplayFor(model => model.ShipAddress)
+        </div>
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.ShipCity)
+            </strong>
+            @Html.DisplayFor(model => model.ShipCity)
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Customer.CompanyName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Customer.CompanyName)
-    </div>
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.ShipRegion)
+            </strong>
+            @Html.DisplayFor(model => model.ShipRegion)
+        </div>
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.ShipPostalCode)
+            </strong>
+            @Html.DisplayFor(model => model.ShipPostalCode)
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Employee.LastName)
+        </div>
+        <div class="form-horizontal">
+            <strong>
+                @Html.DisplayNameFor(model => model.ShipCountry)
+            </strong>
+            @Html.DisplayFor(model => model.ShipCountry)
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Employee.LastName)
-    </div>
+    <div class="col-md-6">
+        <h4>Orderd Items</h4>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>Product Name
+                </th>
+                <th>Unit Price
+                </th>
+                <th>Quantity
+                </th>
+                <th>Discount
+                </th>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.OrderDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.OrderDate)
-    </div>
+            </tr>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.RequiredDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.RequiredDate)
-    </div>
+            @foreach (var ordDet in Model.Order_Details)
+            {
+    
+                <tr>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ShippedDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ShippedDate)
-    </div>
+                    <td>
+                        @ordDet.Product.ProductName
+                    </td>
+                    <td>
+                        @ordDet.UnitPrice
+                    </td>
+                    <td>
+                        @ordDet.Quantity
+                    </td>
+                    <td>
+                        @ordDet.Discount
+                    </td>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Shipper.CompanyName)
+                </tr>
+    
+            }
+        </table>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Shipper.CompanyName)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Freight)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Freight)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ShipName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ShipName)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ShipAddress)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ShipAddress)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ShipCity)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ShipCity)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ShipRegion)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ShipRegion)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ShipPostalCode)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ShipPostalCode)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ShipCountry)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ShipCountry)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.OrderID }) |
+</div>
+<br/>
+<div>
     @Html.ActionLink("Back to List", "Index")
-</p>
+</div>

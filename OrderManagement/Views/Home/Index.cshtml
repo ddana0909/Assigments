@@ -2,8 +2,9 @@
 
 <div id="page">
     @{
-              ViewBag.Title = "Index";
-          }
+        ViewBag.Title = "Index";
+    }
+
     @{
         Html.RenderPartial("_Orders", Model);   
     }
@@ -17,64 +18,58 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="/Scripts/bootstrap.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-
     <script>
         function getEmployeeDetails(empId) {
             $.ajax({
                 url: '@Url.Action("EmployeeDetails")',
                 data: { id: empId },
-                success: function(data) {
+                success: function (data) {
                     $('#empDetailsModal').modal("show");
                     $("#empDetails").html(data).modal("show");
                 }
             });
         }
 
-        function showDeleteDialog(ordId)
-        {
+        function showDeleteDialog(ordId) {
             $.ajax({
-                    
-                    url: '@Url.Action("Delete")',
-                    data: { id: ordId },
-                    success: function (data) {
-                        $('#myModal').data('id', ordId).modal("show");
-                        $("#orderInfo").html(data).modal("show");
-                    }
-                });         
-         }
-         
-        function del()
-        {
+
+                url: '@Url.Action("Delete")',
+                data: { id: ordId },
+                success: function (data) {
+                    $('#myModal').data('id', ordId).modal("show");
+                    $("#orderInfo").html(data).modal("show");
+                }
+            });
+        }
+
+        function del() {
             var id = $('#myModal').data('id');
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Delete")',
-                 data: { id: id },
-                 success: function () {
-                     $('#myModal').modal('hide');               
-                 }
-             });          
-        }
+            data: { id: id },
+            success: function () {
+                $('#myModal').modal('hide');
+            }
+        });
+    }
 
-        function close()
-        {
-            $('#myModal').modal('hide');
-        }
+    function close() {
+        $('#myModal').modal('hide');
+    }
 
     </script>
 }
 
 <div id="empDetailsModal" class="modal">
-    <br/>
-    <br/>
-    <br/>
-    <div class="col-md-offset-3 col-md-6" id="empDetails">    
-    </div>            
+    <br />
+    <br />
+    <br />
+    <div class="col-md-offset-3 col-md-6" id="empDetails">
+    </div>
 </div>
-
-<div id="myModal" class="modal" >
+<div id="myModal" class="modal">
     <div id="orderInfo">
-        
     </div>
 </div>
 

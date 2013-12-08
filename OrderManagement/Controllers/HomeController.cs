@@ -39,12 +39,14 @@ namespace OrderManagement.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Order order = db.Orders.Find(id);
+            var order = db.Orders.Where(o=>o.OrderID==id).Include(o=>o.Order_Details);
+
+            
             if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
+            return View(order.FirstOrDefault());
         }
 
         public ActionResult Create()
