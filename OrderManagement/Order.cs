@@ -57,6 +57,7 @@ namespace OrderManagement
         public string ShipRegion { get; set; }
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
+
         [DisplayName("Shipping Address")]
         public string ShippingDetails
         {

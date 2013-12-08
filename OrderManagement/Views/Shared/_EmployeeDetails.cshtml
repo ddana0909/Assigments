@@ -9,17 +9,7 @@
 
         <div class="row">
             <div class="col-md-4">
-                @{ byte[] photo = Model.Photo;
-                   string imageSrc = null;
-                   if (photo != null)
-                   {
-                       var ms = new MemoryStream();
-                       ms.Write(photo, 78, photo.Length - 78); // strip out 78 byte OLE header (don't need to do this for normal images)
-                       string imageBase64 = Convert.ToBase64String(ms.ToArray());
-                       imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
-                   }
-                }
-                <img src="@imageSrc" alt="Employee Photo" />
+                <img src="@Model.GetPhotoAsString()" alt="Employee Photo" />
             </div>
             <div class="col-md-8">
                 <div class="row">

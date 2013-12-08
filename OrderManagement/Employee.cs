@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System.ComponentModel;
+using System.IO;
 
 namespace OrderManagement
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Employee
     {
         public Employee()
@@ -22,9 +23,9 @@ namespace OrderManagement
             this.Orders = new HashSet<Order>();
             this.Territories = new HashSet<Territory>();
         }
-    
+
         public int EmployeeID { get; set; }
-        
+
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Title { get; set; }
@@ -40,14 +41,28 @@ namespace OrderManagement
         public string Extension { get; set; }
         public byte[] Photo { get; set; }
         public string Notes { get; set; }
-        public Nullable<int> ReportsTo { get; set; }
+        public int? ReportsTo { get; set; }
         public string PhotoPath { get; set; }
-        
+
         [DisplayName("Employee Name")]
-        public string FullName {
+        public string FullName
+        {
             get
             {
-                return FirstName + " "+ LastName;
+                return FirstName + " " + LastName;
+            }
+        }
+
+        public string GetPhotoAsString()
+        {
+            if (Photo == null)
+                return string.Empty;
+
+            using (var ms = new MemoryStream())
+            {
+                ms.Write(Photo, 78, Photo.Length - 78); // strip out 78 byte OLE header (don't need to do this for normal images)
+                string imageBase64 = Convert.ToBase64String(ms.ToArray());
+                return string.Format("data:image/gif;base64,{0}", imageBase64);
             }
         }
 

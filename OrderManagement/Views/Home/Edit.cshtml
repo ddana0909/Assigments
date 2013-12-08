@@ -4,8 +4,21 @@
     ViewBag.Title = "Edit Order";
 }
 <head>
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 </head>
+
+@section Scripts {
+    
+    <script>
+        $(function () {
+            $('#datepicker').datepicker();
+            $('#datepicker1').datepicker();
+            $('#datepicker2').datepicker();
+        });
+    </script>
+}
+
+
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
@@ -14,12 +27,12 @@
         <div class=" col-md-offset-1 col-md-4">
             <div class="form-group input-group-sm">
                 @Html.LabelFor(model => model.CustomerID, "Customer")
-                @Html.DropDownList("CustomerID", (SelectList)ViewBag.CustomerID, String.Empty, new { @class = "form-control input-sm" })
+                @Html.DropDownListFor(m => m.CustomerID, (SelectList)ViewBag.Customers, new { @class = "form-control input-sm" })
             </div>
             <div class="form-group input-group-sm">
                 @Html.LabelFor(model => model.EmployeeID, "Employee")
 
-                @Html.DropDownList("EmployeeID", (SelectList)ViewBag.EmployeeID, String.Empty, new { @class = "form-control input-sm" })
+                @Html.DropDownList("EmployeeID", (SelectList)ViewBag.Employees, String.Empty, new { @class = "form-control input-sm" })
                 @Html.ValidationMessageFor(model => model.EmployeeID)
             </div>
             <div class="form-group input-group-sm">
@@ -43,7 +56,7 @@
             <div class="form-group input-group-sm">
                 @Html.LabelFor(model => model.ShipVia, "Shipper")
 
-                @Html.DropDownList("ShipVia", (SelectList)ViewBag.ShipVia, String.Empty, new { @class = "form-control input-sm" })
+                @Html.DropDownList("ShipVia", (SelectList)ViewBag.ShipVias, String.Empty, new { @class = "form-control input-sm" })
                 @Html.ValidationMessageFor(model => model.ShipVia)
             </div>
             <div class="form-group input-group-sm">
@@ -101,16 +114,4 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
-    <script>
-        $(function () {
-            $('#datepicker').datepicker();
-            $('#datepicker1').datepicker();
-            $('#datepicker2').datepicker();
-        });
-    </script>
-}

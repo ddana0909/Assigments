@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using PagedList;
@@ -8,57 +7,53 @@ namespace OrderManagement.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly nwndEntities db;
+        const int PageSize = 5;
+
+        private readonly NorthWindDataContext _db;
 
         public HomeController()
         {
-            db = new nwndEntities();
+            _db = new NorthWindDataContext();
         }
 
-        public ActionResult Index(int? page, int id = 0)
+        public ActionResult Index(int pageNumber = 1, int employeeId = 0)
         {
-            int pageNumber = (page ?? 1);
-            const int pageSize = 5;
+            var orders = _db.Orders.Where(o => o.EmployeeID == employeeId || employeeId == 0).OrderByDescending(o => o.OrderDate);
 
-            if (id != 0)
-            {
-                var ord = db.Orders.Where(o => o.EmployeeID == id);
-                var orders = ord.Include(o => o.Customer).Include(o => o.Employee).Include(o => o.Shipper);
-              
-                return View(orders.OrderBy(c=>c.OrderID).ToPagedList(pageNumber, pageSize));
-            }
-            return View(db.Orders.Include(o => o.Customer).Include(o => o.Employee).Include(o => o.Shipper).OrderBy(o=>o.OrderID).ToPagedList(pageNumber,pageSize));
+            return View(orders.ToPagedList(pageNumber, PageSize));
         }
 
-        public ActionResult EmployeeDetails(int id = 0)
+        public ActionResult EmployeeDetails(int employeeId = 0)
         {
-            Employee emp = db.Employees.Find(id);
-            ViewBag.empName = db.Employees.Find(emp.ReportsTo).FirstName + " " + db.Employees.Find(emp.ReportsTo).LastName; //must be changed
+            Employee emp = _db.Employees.Find(employeeId);
+
+            ViewBag.empName = _db.Employees.Find(emp.ReportsTo).FirstName + " " + _db.Employees.Find(emp.ReportsTo).LastName; //must be changed
             return PartialView("_EmployeeDetails", emp);
         }
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(int orderId = 0)
         {
-            var order = db.Orders.Where(o=>o.OrderID==id).Include(o=>o.Order_Details);
+            var order = _db.Orders.Find(orderId);
 
-            
             if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(order.FirstOrDefault());
+
+            return View(order);
         }
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(int orderId = 0)
         {
-            Order order = db.Orders.Find(id);
+            var order = _db.Orders.Find(orderId);
+
             if (order == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "CompanyName", order.CustomerID);
-            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName", order.EmployeeID);
-            ViewBag.ShipVia = new SelectList(db.Shippers, "ShipperID", "CompanyName", order.ShipVia);
+
+            CreateSelectListItems(order);
+
             return View(order);
         }
 
@@ -67,36 +62,42 @@ namespace OrderManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(order).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(order).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "CompanyName", order.CustomerID);
-            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName", order.EmployeeID);
-            ViewBag.ShipVia = new SelectList(db.Shippers, "ShipperID", "CompanyName", order.ShipVia);
+
+            CreateSelectListItems(order);
+
             return View(order);
         }
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(int orderId)
         {
-            var order = db.Orders.Where(o => o.OrderID == id);
-            order.Include(o => o.Customer);
-            return PartialView("_DeleteDetails", order.ToList());
+            var order = _db.Orders.Find(orderId);
+
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_DeleteDetails", order);
         }
 
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int orderId)
         {
-            var order = db.Orders.Find(id);
+            var order = _db.Orders.Find(orderId);
+
             if (order != null)
             {
-                var orderDetails = db.Order_Details.Where(o => o.OrderID == id);
+                var orderDetails = _db.Order_Details.Where(o => o.OrderID == orderId);
+
                 foreach (var orderDetail in orderDetails)
                 {
-                    db.Order_Details.Remove(orderDetail);
+                    _db.Order_Details.Remove(orderDetail);
                 }
-                db.Orders.Remove(order);
-                db.SaveChanges();
 
+                _db.Orders.Remove(order);
+                _db.SaveChanges();
             }
 
             return RedirectToAction("Index");
@@ -104,8 +105,15 @@ namespace OrderManagement.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
+        }
+
+        private void CreateSelectListItems(Order order)
+        {
+            ViewBag.Customers = new SelectList(_db.Customers.ToList(), "CustomerID", "CompanyName", order.CustomerID);
+            ViewBag.Employees = new SelectList(_db.Employees, "EmployeeID", "LastName", order.EmployeeID);
+            ViewBag.ShipVias = new SelectList(_db.Shippers, "ShipperID", "CompanyName", order.ShipVia);
         }
     }
 }
