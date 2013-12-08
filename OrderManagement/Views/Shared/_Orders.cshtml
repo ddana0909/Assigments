@@ -72,15 +72,16 @@
                 @Html.DisplayFor(modelItem => item.Freight)
             </td>
             <td>                                       
-                <a title="@Html.DisplayFor(modelItem => item.ShipName)
-                     @Html.DisplayFor(modelItem => item.ShipAddress)
-                     @Html.DisplayFor(modelItem => item.ShipCity)      
-                     @Html.DisplayFor(modelItem => item.ShipRegion)                 
-                     @Html.DisplayFor(modelItem => item.ShipPostalCode)               
-                     @Html.DisplayFor(modelItem => item.ShipCountry)"
+                <a title="@Html.Raw(item.ShipName)
+                     @Html.Raw(item.ShipAddress)
+                     @Html.Raw(item.ShipCity)      
+                     @Html.Raw(item.ShipRegion)                
+                     @Html.Raw(item.ShipPostalCode)               
+                     @Html.Raw(item.ShipCountry)"
                    data-html="true" 
                    data-toggle='tooltip' 
-                   data-placement='left' >
+                   data-placement='left' 
+                   >
                    @Html.DisplayFor(modelItem => item.ShippingDetails) 
                 </a>               
             </td>
