@@ -18,7 +18,7 @@ namespace OrderManagement.Controllers
         public ActionResult Index(int? page, int id = 0)
         {
             int pageNumber = (page ?? 1);
-            int pageSize = 5;
+            const int pageSize = 5;
 
             if (id != 0)
             {
@@ -47,30 +47,6 @@ namespace OrderManagement.Controllers
                 return HttpNotFound();
             }
             return View(order.FirstOrDefault());
-        }
-
-        public ActionResult Create()
-        {
-            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "CompanyName");
-            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName");
-            ViewBag.ShipVia = new SelectList(db.Shippers, "ShipperID", "CompanyName");
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create(Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Orders.Add(order);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "CompanyName", order.CustomerID);
-            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName", order.EmployeeID);
-            ViewBag.ShipVia = new SelectList(db.Shippers, "ShipperID", "CompanyName", order.ShipVia);
-            return View(order);
         }
 
         public ActionResult Edit(int id = 0)
