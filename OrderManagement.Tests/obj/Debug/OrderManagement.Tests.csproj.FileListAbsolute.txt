@@ -37,3 +37,7 @@ D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\Orde
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement.Tests\obj\Debug\OrderManagement.Tests.dll
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement.Tests\obj\Debug\OrderManagement.Tests.pdb
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement.Tests\bin\Debug\Scripts\jquery.js
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement.Tests\bin\Debug\PagedList.dll
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement.Tests\bin\Debug\PagedList.Mvc.dll
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement.Tests\bin\Debug\PagedList.xml
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement.Tests\bin\Debug\PagedList.Mvc.xml

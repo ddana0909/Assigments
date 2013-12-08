@@ -1,11 +1,9 @@
-﻿@model IEnumerable<OrderManagement.Order>
+﻿@model PagedList.IPagedList<OrderManagement.Order>
+
 <div id="page">
     @{
               ViewBag.Title = "Index";
           }
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
     @{
         Html.RenderPartial("_Orders", Model);   
     }

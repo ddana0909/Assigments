@@ -24,7 +24,7 @@ namespace OrderManagement
         }
     
         public int EmployeeID { get; set; }
-        [DisplayName("Employee Name")]
+        
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Title { get; set; }
@@ -42,7 +42,15 @@ namespace OrderManagement
         public string Notes { get; set; }
         public Nullable<int> ReportsTo { get; set; }
         public string PhotoPath { get; set; }
-    
+        
+        [DisplayName("Employee Name")]
+        public string FullName {
+            get
+            {
+                return FirstName + " "+ LastName;
+            }
+        }
+
         public virtual ICollection<Employee> Employees1 { get; set; }
         public virtual Employee Employee1 { get; set; }
         public virtual ICollection<Order> Orders { get; set; }

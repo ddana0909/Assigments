@@ -1,8 +1,8 @@
 ﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Web.Mvc;
+using PagedList;
 
 namespace OrderManagement.Controllers
 {
@@ -15,16 +15,19 @@ namespace OrderManagement.Controllers
             db = new nwndEntities();
         }
 
-        public ActionResult Index(int id = 0)
+        public ActionResult Index(int? page, int id = 0)
         {
+            int pageNumber = (page ?? 1);
+            int pageSize = 5;
+
             if (id != 0)
             {
                 var ord = db.Orders.Where(o => o.EmployeeID == id);
                 var orders = ord.Include(o => o.Customer).Include(o => o.Employee).Include(o => o.Shipper);
               
-                return View(orders.ToList());
+                return View(orders.OrderBy(c=>c.OrderID).ToPagedList(pageNumber, pageSize));
             }
-            return View(db.Orders.Include(o => o.Customer).Include(o => o.Employee).Include(o => o.Shipper).ToList());
+            return View(db.Orders.Include(o => o.Customer).Include(o => o.Employee).Include(o => o.Shipper).OrderBy(o=>o.OrderID).ToPagedList(pageNumber,pageSize));
         }
 
         public ActionResult EmployeeDetails(int id = 0)

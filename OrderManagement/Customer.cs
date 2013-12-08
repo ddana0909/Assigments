@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+
 namespace OrderManagement
 {
     using System;
@@ -21,7 +23,9 @@ namespace OrderManagement
         }
     
         public string CustomerID { get; set; }
+        [DisplayName("Company Name")]
         public string CompanyName { get; set; }
+        [DisplayName("Contact Name")]
         public string ContactName { get; set; }
         public string ContactTitle { get; set; }
         public string Address { get; set; }
