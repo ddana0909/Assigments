@@ -10,6 +10,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Ajax.Utilities;
 
@@ -58,9 +59,16 @@ namespace OrderManagement
         {
             get
             {
-                var sb = new StringBuilder(ShipAddress + ", " + ShipCity + ", " + ShipRegion + ", "
+                var sb = new StringBuilder(ShipName + ", " + ShipAddress + ", " + ShipCity + ", " + ShipRegion + ", "
                     + ShipPostalCode + ", " + ShipCountry);
                 sb.Replace(", , ", ", ");
+                if (sb.Length > 17)
+                {
+                    sb.Remove(17, sb.Length - 17);
+                    if (Char.IsPunctuation(sb[sb.Length - 1]))
+                        sb.Remove(sb.Length - 1,1);
+                    sb.Insert(sb.Length, "...");
+                }
                 return (sb.ToString());
             }
         }

@@ -37,9 +37,6 @@
             @Html.DisplayNameFor(model => model.Freight)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ShipName)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.ShippingDetails)
         </th>
 
@@ -74,33 +71,26 @@
             <td onclick=" getEmployeeDetails(@item.EmployeeID) " style="cursor: pointer">
                 @Html.DisplayFor(modelItem => item.Freight)
             </td>
-            <td onclick=" getEmployeeDetails(@item.EmployeeID) " style="cursor: pointer">
-                @Html.DisplayFor(modelItem => item.ShipName)
-            </td>
-            <td  >
-              
-                <a title="@Html.DisplayFor(modelItem => item.ShipAddress)
-                          @Html.DisplayFor(modelItem => item.ShipCity)      
-                          @Html.DisplayFor(modelItem => item.ShipRegion)                 
-                          @Html.DisplayFor(modelItem => item.ShipPostalCode)               
-                          @Html.DisplayFor(modelItem => item.ShipCountry)"
+            <td>                                       
+                <a title="@Html.DisplayFor(modelItem => item.ShipName)
+                     @Html.DisplayFor(modelItem => item.ShipAddress)
+                     @Html.DisplayFor(modelItem => item.ShipCity)      
+                     @Html.DisplayFor(modelItem => item.ShipRegion)                 
+                     @Html.DisplayFor(modelItem => item.ShipPostalCode)               
+                     @Html.DisplayFor(modelItem => item.ShipCountry)"
                    data-html="true" 
                    data-toggle='tooltip' 
                    data-placement='left' >
-                   @Html.DisplayFor(modelItem => item.ShippingDetails)
-                </a>
-                 
-                
+                   @Html.DisplayFor(modelItem => item.ShippingDetails) 
+                </a>               
             </td>
          
             <td id="optionSquare">
                 @Html.ActionLink("Edit", "Edit", "Home", new {id = item.OrderID}, new {@class = "btn btn-default btn-xs"})
+                 <button class="btn btn-default btn-xs" onclick=" showDeleteDialog(@item.OrderID) " style="cursor: pointer">Delete</button>
                 @Html.ActionLink("Details", "Details", "Home", new {id = item.OrderID}, new {@class = "btn btn-default btn-xs"})
-                <button class="btn btn-default btn-xs" onclick=" showDeleteDialog(@item.OrderID) " style="cursor: pointer">Delete</button>
+              
             </td>
         </tr>
     }
 </table>
-
-
-<a title='Left Tooltip' rel='tooltip' data-placement='left' >Left Tooltip</a>
