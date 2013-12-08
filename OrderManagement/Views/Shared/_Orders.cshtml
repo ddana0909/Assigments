@@ -1,4 +1,14 @@
 ﻿@model IEnumerable<OrderManagement.Order>
+<head>
+    <script src="/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap.js"></script>
+    
+    <script type="text/javascript">
+        $(function () {
+            $("[rel=tooltip]").tooltip();
+        });
+    </script>
+</head>
 
 <table class="table table-condensed table-hover table-striped">
     <tr>
@@ -30,7 +40,7 @@
             @Html.DisplayNameFor(model => model.ShipName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ShipAddress)
+            @Html.DisplayNameFor(model => model.ShippingDetails)
         </th>
 
         <th></th>
@@ -39,50 +49,58 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td onclick="getEmployeeDetails(@item.EmployeeID)" style="cursor:pointer">
+            <td onclick=" getEmployeeDetails(@item.EmployeeID) " style="cursor: pointer">
                 @Html.DisplayFor(modelItem => item.Customer.CompanyName)
             </td>
-            <td onclick="getEmployeeDetails(@item.EmployeeID)" style="cursor:pointer">
+            <td onclick=" getEmployeeDetails(@item.EmployeeID) " style="cursor: pointer">
                 @Html.DisplayFor(modelItem => item.Customer.ContactName)
             </td>
-            <td onclick="getEmployeeDetails(@item.EmployeeID)" style="cursor:pointer">
+            <td onclick=" getEmployeeDetails(@item.EmployeeID) " style="cursor: pointer">
                 @Html.DisplayFor(modelItem => item.Employee.LastName)
             </td>
 
-            <td onclick="getEmployeeDetails(@item.EmployeeID)" style="cursor:pointer">
+            <td onclick=" getEmployeeDetails(@item.EmployeeID) " style="cursor: pointer">
                 @Html.DisplayFor(modelItem => item.OrderDate)
             </td>
-            <td onclick="getEmployeeDetails(@item.EmployeeID)" style="cursor:pointer">
+            <td onclick=" getEmployeeDetails(@item.EmployeeID) " style="cursor: pointer">
                 @Html.DisplayFor(modelItem => item.RequiredDate)
             </td>
-            <td onclick="getEmployeeDetails(@item.EmployeeID)" style="cursor:pointer">
+            <td onclick=" getEmployeeDetails(@item.EmployeeID) " style="cursor: pointer">
                 @Html.DisplayFor(modelItem => item.ShippedDate)
             </td>
-            <td onclick="getEmployeeDetails(@item.EmployeeID)" style="cursor:pointer">
+            <td onclick=" getEmployeeDetails(@item.EmployeeID) " style="cursor: pointer">
                 @Html.DisplayFor(modelItem => item.Shipper.CompanyName)
             </td>
-            <td onclick="getEmployeeDetails(@item.EmployeeID)" style="cursor:pointer">
+            <td onclick=" getEmployeeDetails(@item.EmployeeID) " style="cursor: pointer">
                 @Html.DisplayFor(modelItem => item.Freight)
             </td>
-            <td onclick="getEmployeeDetails(@item.EmployeeID)" style="cursor:pointer">
+            <td onclick=" getEmployeeDetails(@item.EmployeeID) " style="cursor: pointer">
                 @Html.DisplayFor(modelItem => item.ShipName)
             </td>
-            <td onclick="getEmployeeDetails(@item.EmployeeID)" style="cursor:pointer">
-                @Html.DisplayFor(modelItem => item.ShipAddress),
-                @Html.DisplayFor(modelItem => item.ShipCity),
-                @Html.DisplayFor(modelItem => item.ShipRegion),
-                @Html.DisplayFor(modelItem => item.ShipPostalCode),
-                @Html.DisplayFor(modelItem => item.ShipCountry)
+            <td  >
+              
+                <a title="@Html.DisplayFor(modelItem => item.ShipAddress)
+                          @Html.DisplayFor(modelItem => item.ShipCity)      
+                          @Html.DisplayFor(modelItem => item.ShipRegion)                 
+                          @Html.DisplayFor(modelItem => item.ShipPostalCode)               
+                          @Html.DisplayFor(modelItem => item.ShipCountry)"
+                   data-html="true" 
+                   data-toggle='tooltip' 
+                   data-placement='left' >
+                   @Html.DisplayFor(modelItem => item.ShippingDetails)
+                </a>
+                 
+                
             </td>
+         
             <td id="optionSquare">
-                @Html.ActionLink("Edit", "Edit", "Home", new { id = item.OrderID }, new { @class = "btn btn-default btn-xs" })
-                @Html.ActionLink("Details", "Details", "Home", new { id = item.OrderID }, new { @class = "btn btn-default btn-xs" })
-                <button class="btn btn-default btn-xs" onclick="showDeleteDialog(@item.OrderID)" style="cursor:pointer">Delete</button>
+                @Html.ActionLink("Edit", "Edit", "Home", new {id = item.OrderID}, new {@class = "btn btn-default btn-xs"})
+                @Html.ActionLink("Details", "Details", "Home", new {id = item.OrderID}, new {@class = "btn btn-default btn-xs"})
+                <button class="btn btn-default btn-xs" onclick=" showDeleteDialog(@item.OrderID) " style="cursor: pointer">Delete</button>
             </td>
-        </tr>      
+        </tr>
     }
-
 </table>
 
 
-
+<a title='Left Tooltip' rel='tooltip' data-placement='left' >Left Tooltip</a>

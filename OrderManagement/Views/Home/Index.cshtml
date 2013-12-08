@@ -40,7 +40,6 @@
                     data: { id: ordId },
                     success: function (data) {
                         $('#myModal').data('id', ordId).modal("show");
-                        //$('#myModal').modal("show");
                         $("#orderInfo").html(data).modal("show");
                     }
                 });         

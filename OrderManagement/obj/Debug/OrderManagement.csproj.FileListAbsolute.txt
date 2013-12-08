@@ -31,3 +31,4 @@ D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\Orde
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\System.Web.WebPages.Razor.xml
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.dll
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.pdb
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\bin\Scripts\jquery.js

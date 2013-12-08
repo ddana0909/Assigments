@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 
 namespace OrderManagement.Controllers
@@ -20,6 +21,7 @@ namespace OrderManagement.Controllers
             {
                 var ord = db.Orders.Where(o => o.EmployeeID == id);
                 var orders = ord.Include(o => o.Customer).Include(o => o.Employee).Include(o => o.Shipper);
+              
                 return View(orders.ToList());
             }
             return View(db.Orders.Include(o => o.Customer).Include(o => o.Employee).Include(o => o.Shipper).ToList());
