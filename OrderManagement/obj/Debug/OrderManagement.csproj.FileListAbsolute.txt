@@ -116,3 +116,4 @@ C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\obj\Debug\O
 C:\Users\DANA\Desktop\New folder (2)\Assignments-ca2\OrderManagement\obj\Debug\OrderManagement.pdb
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.Properties.Resources.resources
 D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.csproj.GenerateResource.Cache
+D:\DANA\FACULTATE\anul III\sem I\RichApplicationDevelopment\OrderManagement\OrderManagement\obj\Debug\OrderManagement.csprojResolveAssemblyReference.cache

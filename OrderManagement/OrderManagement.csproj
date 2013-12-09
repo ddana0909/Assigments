@@ -126,54 +126,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alphabetical_list_of_product.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Category.cs" />
-    <Compile Include="Category_Sales_for_1997.cs" />
+    <Compile Include="Models\NW _ProxyClasses\Category.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Current_Product_List.cs" />
-    <Compile Include="Customer.cs" />
-    <Compile Include="CustomerDemographic.cs" />
-    <Compile Include="Customer_and_Suppliers_by_City.cs" />
-    <Compile Include="CustOrderHist_Result.cs" />
-    <Compile Include="CustOrdersDetail_Result.cs" />
-    <Compile Include="CustOrdersOrders_Result.cs" />
-    <Compile Include="Employee.cs" />
-    <Compile Include="Employee_Sales_by_Country_Result.cs" />
+    <Compile Include="Models\NW _ProxyClasses\Customer.cs" />
+    <Compile Include="Models\NW _ProxyClasses\CustomerDemographic.cs" />
+    <Compile Include="Models\NW _ProxyClasses\Employee.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Invoice.cs" />
-    <Compile Include="NorthWindDataContext.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="Orders_Qry.cs" />
-    <Compile Include="Order_Detail.cs" />
-    <Compile Include="Order_Details_Extended.cs" />
-    <Compile Include="Order_Subtotal.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="Products_Above_Average_Price.cs" />
-    <Compile Include="Products_by_Category.cs" />
-    <Compile Include="Product_Sales_for_1997.cs" />
+    <Compile Include="Models\NW _ProxyClasses\Invoice.cs" />
+    <Compile Include="Models\NorthWindDataContext.cs" />
+    <Compile Include="Models\NW _ProxyClasses\Order.cs" />
+    <Compile Include="Models\NW _ProxyClasses\Order_Detail.cs" />
+    <Compile Include="Models\NW _ProxyClasses\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Region.cs" />
-    <Compile Include="SalesByCategory_Result.cs" />
-    <Compile Include="Sales_by_Category.cs" />
-    <Compile Include="Sales_by_Year_Result.cs" />
-    <Compile Include="Sales_Totals_by_Amount.cs" />
-    <Compile Include="Shipper.cs" />
-    <Compile Include="Summary_of_Sales_by_Quarter.cs" />
-    <Compile Include="Summary_of_Sales_by_Year.cs" />
-    <Compile Include="Supplier.cs" />
-    <Compile Include="Ten_Most_Expensive_Products_Result.cs" />
-    <Compile Include="Territory.cs" />
+    <Compile Include="Models\NW _ProxyClasses\Region.cs" />
+    <Compile Include="Models\NW _ProxyClasses\Shipper.cs" />
+    <Compile Include="Models\NW _ProxyClasses\Supplier.cs" />
+    <Compile Include="Models\NW _ProxyClasses\Territory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\northwnd.mdf" />
@@ -293,9 +272,7 @@
     <Content Include="Views\Shared\_Orders.cshtml" />
     <Content Include="Views\Shared\_DeleteDetails.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
