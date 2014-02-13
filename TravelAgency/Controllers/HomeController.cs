@@ -1,14 +1,25 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+using TravelAgency.Models;
 
 namespace TravelAgency.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly TravelAgencyEntities db = new TravelAgencyEntities();
+        
         public ActionResult Index()
         {
+            var g = new Guest {FirstName = "vbakjdbvjsdl"};
+
+            db.Guests.Add(g);
+            db.SaveChanges();
+
+
+            var x = db.Guests;
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
-            return View();
+            return View(x.ToList());
         }
 
         public ActionResult About()
