@@ -10,9 +10,9 @@ namespace TravelAgency.Controllers
         
         public ActionResult Index()
         {
-            var g = new Guest {FirstName = "vbakjdbvjsdl"};
+            
 
-            db.Guests.Add(g);
+            db.Guests.Add(new Guest {FirstName = "vbakjdbvjsdl"});
             db.SaveChanges();
 
 
