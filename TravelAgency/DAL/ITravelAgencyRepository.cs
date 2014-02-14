@@ -4,7 +4,7 @@ using TravelAgency.Models;
 
 namespace TravelAgency.DAL
 {
-    interface ITravelAgencyRepository :IDisposable
+    public interface ITravelAgencyRepository :IDisposable
     {
         IQueryable <Trip> GetAllTrips();
     }
