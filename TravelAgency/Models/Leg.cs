@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TravelAgency.Models
 {
@@ -8,7 +9,11 @@ namespace TravelAgency.Models
         public int Id { get; set; }
         public string StartLocation { get; set; }
         public string FinishLocation { get; set; }
+
+        [DisplayFormat(DataFormatString="{0:dd/MM/yyyy}")]
         public DateTime StartDate { get; set; }
+        
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime FinishDate { get; set;}
         public int TripId { get; set; }
 

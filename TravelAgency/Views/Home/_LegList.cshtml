@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TravelAgency.Models.Leg>
+
+
+
+
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn btn-info btn-xs">Book Now</button>
+
+        </div>
+        <div class="col-md-9">
+
+            <strong>
+                @Html.DisplayFor(modelItem => item.StartLocation) -
+                @Html.DisplayFor(modelItem => item.FinishLocation):
+
+            </strong>
+
+            @Html.DisplayFor(modelItem => item.StartDate.Day)-
+            @Html.DisplayFor(modelItem => item.FinishDate)
+
+        </div>
+        <div class="col-md-1">
+            <span class="badge">@Html.DisplayFor(modelItem => item.Guests.Count) Guests</span>
+        </div>
+    </div>
+    <br />
+}

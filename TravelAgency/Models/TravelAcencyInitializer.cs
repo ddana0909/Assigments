@@ -22,8 +22,8 @@ namespace TravelAgency.Models
              new Leg {StartLocation = "Dublin", StartDate = new DateTime(2014, 08, 15), FinishLocation = "Moscow", FinishDate = new DateTime(2014, 08, 16),TripId = 1},
              new Leg {StartLocation = "Moscow", StartDate = new DateTime(2014, 08, 16), FinishLocation = "Suzdal", FinishDate = new DateTime(2014, 08, 17), TripId = 1},
              new Leg {StartLocation = "Suzdal", StartDate = new DateTime(2014, 08, 17), FinishLocation = "Novgorod", FinishDate = new DateTime(2014, 08, 18), TripId = 1},
-             new Leg {StartLocation = "Novgorod",StartDate = new DateTime(2014, 08, 18),FinishLocation = "St. Petersburg",FinishDate = new DateTime(2014, 08, 19), TripId = 1},
-             new Leg {StartLocation = "Novgorod", StartDate = new DateTime(2014, 08, 20),FinishLocation = "St. Petersburg", FinishDate = new DateTime(2014, 08, 21), TripId = 1},
+             new Leg {StartLocation = "Novgorod",StartDate = new DateTime(2014, 08, 18),FinishLocation = "Bryansk",FinishDate = new DateTime(2014, 08, 19), TripId = 1},
+             new Leg {StartLocation = "Bryansk", StartDate = new DateTime(2014, 08, 20),FinishLocation = "St. Petersburg", FinishDate = new DateTime(2014, 08, 21), TripId = 1},
              new Leg {StartLocation = "St. Petersburg", StartDate = new DateTime(2014, 08, 22),FinishLocation = "Dublin",FinishDate = new DateTime(2014, 08, 22), TripId = 1}
             };
 

@@ -1,29 +1,34 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using TravelAgency.DAL;
-using TravelAgency.Models;
 
 
 namespace TravelAgency.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly TravelAgencyEntities db = new TravelAgencyEntities();
+        
 
-        private ITravelAgencyRepository Repository;
+        private readonly ITravelAgencyRepository _repository;
 
         public HomeController(ITravelAgencyRepository repository)
         {
-            Repository = repository;
+            _repository = repository;
         }
        
 
         public ActionResult Index()
         {
-            var trips = Repository.GetAllTrips();
+            var trips = _repository.GetAllTrips();
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View(trips.ToList());
+        }
+
+        public ActionResult TripDetails(int tripId)
+        {
+            var legs = _repository.GetLegsForTrip(tripId);
+            return PartialView("_LegList", legs);
         }
 
         public ActionResult About()
