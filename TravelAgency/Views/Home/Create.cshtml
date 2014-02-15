@@ -1,0 +1,70 @@
+﻿@using System.Runtime.InteropServices
+@model TravelAgency.Models.Trip
+<head>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+</head>
+
+@section scripts
+{
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            $('#datepicker').datepicker();
+            $('#datepicker1').datepicker();
+            $('#datepicker2').datepicker();
+        });
+    </script>
+}
+<br/>
+<br/>
+<div>
+    @Html.ActionLink("Back to List", "Index",null, new{@class="btn btn-info btn-sm"})
+</div>
+<br/>
+<div class="row">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="col-md-5">
+            <fieldset>
+                <legend>New Trip</legend>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name)
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Name of the trip" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StartDate)
+                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control input-sm", id = "datepicker" })
+                    @Html.ValidationMessageFor(model => model.StartDate)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FinishDate)
+                    @Html.TextBoxFor(model => model.FinishDate, new { @class = "form-control input-sm", id = "datepicker1" })
+                    @Html.ValidationMessageFor(model => model.FinishDate)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MinimumGuests)
+                    @Html.TextBoxFor(model => model.MinimumGuests, new { @class = "form-control", placeholder = "Mimimum Number of Guest for trip to be considered Viable" })
+                    @Html.ValidationMessageFor(model => model.MinimumGuests)
+                </div>
+                <input type="submit" class="btn btn-default" value="Create"/>
+            </fieldset>
+        </div>
+        <div class="col-md-1 text-center">
+            <p>
+                Add Legs                
+                <button  type="submit" class="btn btn-default btn-success btn-lg"><span class="glyphicon glyphicon-plus"></span></button>                
+            </p>
+        </div>
+        <div class="col-md-6"></div>
+
+    }
+</div>

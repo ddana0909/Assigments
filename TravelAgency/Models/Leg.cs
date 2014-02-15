@@ -17,7 +17,7 @@ namespace TravelAgency.Models
         public DateTime FinishDate { get; set;}
         public int TripId { get; set; }
 
-        public virtual ICollection <Guest> Guests { get; set; }
+        public virtual ICollection<LegRegistration> LegRegistrations { get; set; }
         public virtual Trip Trip { get; set; }
 
     }

@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace TravelAgency.Models
 {
-    public class Trip
+    public class AddTripModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -15,10 +15,7 @@ namespace TravelAgency.Models
         public DateTime FinishDate { get; set; }
         [DisplayName("Minumum Number of Guests")]
         public int MinimumGuests { get; set; }
-        public bool Viable { get; set; }
-        public bool Complete { get; set; }
-        public string PicturePath { get; set; }
 
-        public virtual ICollection<Leg> Legs { get; set; }
+        public HttpPostedFileBase PromoPicture { get; set; }
     }
 }

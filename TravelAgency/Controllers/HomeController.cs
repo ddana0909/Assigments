@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using TravelAgency.DAL;
+using TravelAgency.Models;
 
 
 namespace TravelAgency.Controllers
@@ -20,29 +21,38 @@ namespace TravelAgency.Controllers
         public ActionResult Index()
         {
             var trips = _repository.GetAllTrips();
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
+            var x = trips.ToList();
             return View(trips.ToList());
         }
 
         public ActionResult TripDetails(int tripId)
         {
             var legs = _repository.GetLegsForTrip(tripId);
+            var x = legs.ToList();
             return PartialView("_LegList", legs);
         }
 
-        public ActionResult About()
+        [HttpGet]
+        public ActionResult Create()
         {
-            ViewBag.Message = "Your app description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Create(Trip trip)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            trip.Viable = false;
+            trip.Complete = false;
+            trip.PicturePath = "~/Images/default.jpg";
+            
+            _repository.AddTrip(trip);          
+            
+            return RedirectToAction("Index");
         }
+
+
+
+        
     }
 }

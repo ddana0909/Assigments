@@ -23,6 +23,12 @@ namespace TravelAgency.DAL
             return Entities.Legs.Where(t=>t.TripId == tripId).SortBy("StartDate");            
         }
 
+        public void AddTrip(Trip trip)
+        {
+            Entities.Trips.Add(trip);
+            Entities.SaveChanges();
+        }
+
         public void Dispose()
         {
             Entities.Dispose();

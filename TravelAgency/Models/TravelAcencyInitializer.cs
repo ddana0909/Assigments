@@ -4,14 +4,15 @@ using System.Data.Entity;
 
 namespace TravelAgency.Models
 {
-    public class TravelAcencyInitializer:DropCreateDatabaseIfModelChanges<TravelAgencyEntities>
+    public class TravelAcencyInitializer:DropCreateDatabaseAlways<TravelAgencyEntities>
     {
         protected override void Seed(TravelAgencyEntities db)
         {
 
              var trips = new List<Trip>
             {
-                new Trip{Name = "Discover Russia", StartDate = new DateTime(2014,08,15),FinishDate = new DateTime(2014,08,22),MinimumGuests = 4, Viable = true}
+                new Trip{Name = "Discover Russia", StartDate = new DateTime(2014,08,15),FinishDate = new DateTime(2014,08,22),MinimumGuests = 4, Viable = true, Complete = true, PicturePath = "~/Images/Russia.jpg"},
+                new Trip{Name = "Discover Greece", StartDate = new DateTime(2014,07,01),FinishDate = new DateTime(2014,07,07),MinimumGuests = 10, Viable = false, Complete = true, PicturePath = "~/Images/Greece.jpg"}
             };
             
             trips.ForEach(t=>db.Trips.Add(t));
@@ -24,7 +25,20 @@ namespace TravelAgency.Models
              new Leg {StartLocation = "Suzdal", StartDate = new DateTime(2014, 08, 17), FinishLocation = "Novgorod", FinishDate = new DateTime(2014, 08, 18), TripId = 1},
              new Leg {StartLocation = "Novgorod",StartDate = new DateTime(2014, 08, 18),FinishLocation = "Bryansk",FinishDate = new DateTime(2014, 08, 19), TripId = 1},
              new Leg {StartLocation = "Bryansk", StartDate = new DateTime(2014, 08, 20),FinishLocation = "St. Petersburg", FinishDate = new DateTime(2014, 08, 21), TripId = 1},
-             new Leg {StartLocation = "St. Petersburg", StartDate = new DateTime(2014, 08, 22),FinishLocation = "Dublin",FinishDate = new DateTime(2014, 08, 22), TripId = 1}
+             new Leg {StartLocation = "St. Petersburg", StartDate = new DateTime(2014, 08, 22),FinishLocation = "Dublin",FinishDate = new DateTime(2014, 08, 22), TripId = 1},
+            
+             new Leg {StartLocation = "Dublin", StartDate = new DateTime(2014, 07, 01),FinishLocation = "Athens",FinishDate = new DateTime(2014, 07, 01), TripId = 2},
+             new Leg {StartLocation = "Athens", StartDate = new DateTime(2014, 07, 02),FinishLocation = "Syros",FinishDate = new DateTime(2014, 07, 03), TripId = 2},
+             new Leg {StartLocation = "Syros", StartDate = new DateTime(2014, 07, 03),FinishLocation = "Mykonos",FinishDate = new DateTime(2014, 07, 04), TripId = 2},
+             new Leg {StartLocation = "Mykonos", StartDate = new DateTime(2014, 07, 04),FinishLocation = "Santorini",FinishDate = new DateTime(2014, 07, 05), TripId = 2},
+             new Leg {StartLocation = "Santorini", StartDate = new DateTime(2014, 07, 05),FinishLocation = "Corfu",FinishDate = new DateTime(2014, 07, 06), TripId = 2},
+             new Leg {StartLocation = "Corfu", StartDate = new DateTime(2014, 07, 06),FinishLocation = "Dublin",FinishDate = new DateTime(2014, 07, 07), TripId = 2}
+
+
+
+
+
+            
             };
 
             legs.ForEach(l=>db.Legs.Add(l));
