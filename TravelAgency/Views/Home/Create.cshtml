@@ -1,5 +1,4 @@
-﻿@using System.Runtime.InteropServices
-@model TravelAgency.Models.Trip
+﻿@model TravelAgency.Models.Trip
 <head>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 </head>
@@ -7,14 +6,15 @@
 @section scripts
 {
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-
+   
     <script>
         $(function () {
-            $('#datepicker').datepicker();
-            $('#datepicker1').datepicker();
-            $('#datepicker2').datepicker();
+            $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
+            $('#datepicker1').datepicker({ dateFormat: 'dd/mm/yy' });
+           
         });
     </script>
+     @Scripts.Render("~/bundles/jqueryval")
 }
 <br/>
 <br/>
@@ -35,25 +35,25 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Name)
                     @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Name of the trip" })
-                    @Html.ValidationMessageFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name, null, new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.StartDate)
-                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control input-sm", id = "datepicker" })
-                    @Html.ValidationMessageFor(model => model.StartDate)
+                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control ", id = "datepicker" })
+                    @Html.ValidationMessageFor(model => model.StartDate,null, new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.FinishDate)
-                    @Html.TextBoxFor(model => model.FinishDate, new { @class = "form-control input-sm", id = "datepicker1" })
-                    @Html.ValidationMessageFor(model => model.FinishDate)
+                    @Html.TextBoxFor(model => model.FinishDate, new { @class = "form-control ", id = "datepicker1" })
+                    @Html.ValidationMessageFor(model => model.FinishDate,null, new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.MinimumGuests)
                     @Html.TextBoxFor(model => model.MinimumGuests, new { @class = "form-control", placeholder = "Mimimum Number of Guest for trip to be considered Viable" })
-                    @Html.ValidationMessageFor(model => model.MinimumGuests)
+                    @Html.ValidationMessageFor(model => model.MinimumGuests,null, new { @class = "text-danger" })
                 </div>
                 <input type="submit" class="btn btn-default" value="Create"/>
             </fieldset>

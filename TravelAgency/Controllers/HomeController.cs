@@ -21,8 +21,6 @@ namespace TravelAgency.Controllers
         public ActionResult Index()
         {
             var trips = _repository.GetAllTrips();
-
-            var x = trips.ToList();
             return View(trips.ToList());
         }
 
@@ -42,13 +40,20 @@ namespace TravelAgency.Controllers
         [HttpPost]
         public ActionResult Create(Trip trip)
         {
-            trip.Viable = false;
-            trip.Complete = false;
-            trip.PicturePath = "~/Images/default.jpg";
-            
-            _repository.AddTrip(trip);          
-            
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                trip.Viable = false;
+                trip.Complete = false;
+                trip.PicturePath = "~/Images/default.jpg";
+
+                _repository.AddTrip(trip);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
 

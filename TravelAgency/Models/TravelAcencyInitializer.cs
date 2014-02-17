@@ -4,14 +4,14 @@ using System.Data.Entity;
 
 namespace TravelAgency.Models
 {
-    public class TravelAcencyInitializer:DropCreateDatabaseAlways<TravelAgencyEntities>
+    public class TravelAcencyInitializer:DropCreateDatabaseIfModelChanges<TravelAgencyEntities>
     {
         protected override void Seed(TravelAgencyEntities db)
         {
 
              var trips = new List<Trip>
             {
-                new Trip{Name = "Discover Russia", StartDate = new DateTime(2014,08,15),FinishDate = new DateTime(2014,08,22),MinimumGuests = 4, Viable = true, Complete = true, PicturePath = "~/Images/Russia.jpg"},
+                new Trip{Name = "Discover Russia", StartDate = new DateTime(2014,08,15),FinishDate = new DateTime(2014,08,22),MinimumGuests = 5, Viable = true, Complete = true, PicturePath = "~/Images/Russia.jpg"},
                 new Trip{Name = "Discover Greece", StartDate = new DateTime(2014,07,01),FinishDate = new DateTime(2014,07,07),MinimumGuests = 10, Viable = false, Complete = true, PicturePath = "~/Images/Greece.jpg"}
             };
             

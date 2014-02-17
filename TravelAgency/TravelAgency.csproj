@@ -158,12 +158,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LegController.cs" />
     <Compile Include="DAL\ITravelAgencyRepository.cs" />
     <Compile Include="DAL\TravelAgencyRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AddTripModel.cs" />
+    <Compile Include="HelperClasses\DataRangeAttribute.cs" />
+    <Compile Include="HelperClasses\GreaterThanAttribute.cs" />
     <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\Leg.cs" />
     <Compile Include="Models\LegRegistration.cs" />
@@ -244,9 +246,7 @@
     <Content Include="Images\default.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Greece .jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Images\Greece.jpg" />
     <Content Include="Images\Russia.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -301,6 +301,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_LegList.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
+    <Content Include="Views\Leg\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
