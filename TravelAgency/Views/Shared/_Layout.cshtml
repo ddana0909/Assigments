@@ -41,17 +41,18 @@
          @RenderSection("featured", required: false)
         <section class="content-wrapper main-content clear-fix">
             @RenderBody()
-        </section>
-    </div>
-       
-    
-    <footer>
+            <footer>
         <div id="footer">
             <div class="navbar navbar-fixed-bottom">
                 <p class="text-center">&copy; @DateTime.Now.Year - Dana Diac Travel Agency</p>
             </div>
         </div>
     </footer>
+        </section>
+    </div>
+       
+    
+    
 
     
     @Scripts.Render("~/bundles/jquery")   
