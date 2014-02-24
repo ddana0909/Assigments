@@ -105,16 +105,31 @@ namespace TravelAgency.Controllers
             }
         }
         [HttpPost]
-        public JsonResult DateOutsideTrip(DateTime startdate,int tripId)
+        public JsonResult StartDateOutsideTrip(DateTime startdate, int tripId)
         {
             var trip = _repository.GetTrip(tripId);
+
+            if (DateTime.Compare(startdate, trip.StartDate) < 0)
+                return Json(false, JsonRequestBehavior.AllowGet);
+
+            if (DateTime.Compare(startdate, trip.FinishDate) > 0)
+                return Json(false, JsonRequestBehavior.AllowGet);
             
-            return
-                Json(!(DateTime.Compare(startdate, trip.StartDate) < 0 
-                        || DateTime.Compare(startdate, trip.FinishDate) > 0));
+            return Json(true,JsonRequestBehavior.AllowGet);
+
+            //return
+            //    Json(!(DateTime.Compare(startdate, trip.StartDate) < 0 
+            //            || DateTime.Compare(startdate, trip.FinishDate) > 0),JsonRequestBehavior.AllowGet);
 
 
         }
-   
+
+        public JsonResult FinishDateOutsideTrip(DateTime finishdate, int tripId)
+        {
+            var trip = _repository.GetTrip(tripId);
+            return Json(!(DateTime.Compare(finishdate, trip.StartDate) < 0 
+                       || DateTime.Compare(finishdate, trip.FinishDate) > 0),JsonRequestBehavior.AllowGet);
+
+        }
     }
 }

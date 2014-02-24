@@ -21,10 +21,14 @@ namespace TravelAgency.Models
             "Numbers and special characters are not allowed in the Finish Location.")]
         public string FinishLocation { get; set; }
 
-    //    [Remote("DateOutsideTrip", "Leg", HttpMethod = "POST", ErrorMessage = "Date falls outside the period of the trip ", AdditionalFields = "TripId")]
+
+        [Required]
+        [Remote("StartDateOutsideTrip", "Leg", HttpMethod = "POST", ErrorMessage = "Date falls outside the period of the trip ", AdditionalFields = "TripId")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]     
         public DateTime StartDate { get; set; }
 
-//        [Remote("DateOutsideTrip", "Leg", HttpMethod = "POST", ErrorMessage = "Date falls outside the period of the trip ", AdditionalFields = "TripId")]         
+        [Required]
+        [Remote("FinishDateOutsideTrip", "Leg", HttpMethod = "POST", ErrorMessage = "Date falls outside the period of the trip ", AdditionalFields = "TripId")]         
         [GreaterThan("StartDate")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime FinishDate { get; set;}
