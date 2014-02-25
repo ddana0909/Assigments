@@ -7,7 +7,7 @@ namespace TravelAgency.Models
         public DbSet<Leg> Legs { get; set; }
         public DbSet<Guest> Guests { get; set; }
         public DbSet<Trip> Trips { get; set; }
-        public DbSet<LegRegistration> LegRegistrations { get; set; }
+        public DbSet<GuestRegistration> GuestRegistrations { get; set; }
 
         public TravelAgencyEntities()
            

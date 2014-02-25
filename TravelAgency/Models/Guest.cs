@@ -7,6 +7,6 @@ namespace TravelAgency.Models
         public int Id { get; set; }
         public string FirstName { get; set; }
 
-        public virtual ICollection<LegRegistration> LegRegistrations { get; set; }
+        public virtual ICollection<GuestRegistration> LegRegistrations { get; set; }
     }
 }

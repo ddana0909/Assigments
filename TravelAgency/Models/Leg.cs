@@ -36,7 +36,7 @@ namespace TravelAgency.Models
         [DisplayName("Trip")]
         public int TripId { get; set; }
 
-        public virtual ICollection<LegRegistration> LegRegistrations { get; set; }
+        public virtual ICollection<GuestRegistration> LegRegistrations { get; set; }
         public virtual Trip Trip { get; set; }
 
     }

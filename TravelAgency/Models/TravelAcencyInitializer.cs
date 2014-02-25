@@ -24,8 +24,8 @@ namespace TravelAgency.Models
              new Leg {StartLocation = "Moscow", StartDate = new DateTime(2014, 08, 16), FinishLocation = "Suzdal", FinishDate = new DateTime(2014, 08, 17), TripId = 1},
              new Leg {StartLocation = "Suzdal", StartDate = new DateTime(2014, 08, 17), FinishLocation = "Novgorod", FinishDate = new DateTime(2014, 08, 18), TripId = 1},
              new Leg {StartLocation = "Novgorod",StartDate = new DateTime(2014, 08, 18),FinishLocation = "Bryansk",FinishDate = new DateTime(2014, 08, 19), TripId = 1},
-             new Leg {StartLocation = "Bryansk", StartDate = new DateTime(2014, 08, 20),FinishLocation = "St. Petersburg", FinishDate = new DateTime(2014, 08, 21), TripId = 1},
-             new Leg {StartLocation = "St. Petersburg", StartDate = new DateTime(2014, 08, 22),FinishLocation = "Dublin",FinishDate = new DateTime(2014, 08, 22), TripId = 1},
+             new Leg {StartLocation = "Bryansk", StartDate = new DateTime(2014, 08, 20),FinishLocation = "St Petersburg", FinishDate = new DateTime(2014, 08, 21), TripId = 1},
+             new Leg {StartLocation = "St Petersburg", StartDate = new DateTime(2014, 08, 22),FinishLocation = "Dublin",FinishDate = new DateTime(2014, 08, 22), TripId = 1},
             
              new Leg {StartLocation = "Dublin", StartDate = new DateTime(2014, 07, 01),FinishLocation = "Athens",FinishDate = new DateTime(2014, 07, 01), TripId = 2},
              new Leg {StartLocation = "Athens", StartDate = new DateTime(2014, 07, 02),FinishLocation = "Syros",FinishDate = new DateTime(2014, 07, 03), TripId = 2},
@@ -55,21 +55,21 @@ namespace TravelAgency.Models
             guests.ForEach(g=>db.Guests.Add(g));
             db.SaveChanges();
 
-            var legReg = new List<LegRegistration>
+            var legReg = new List<GuestRegistration>
             {
-                new LegRegistration {LegId = 1, GuestId = 2},
-                new LegRegistration {LegId = 1, GuestId = 3},
-                new LegRegistration {LegId = 2, GuestId = 4},
-                new LegRegistration {LegId = 2, GuestId = 1},
-                new LegRegistration {LegId = 3, GuestId = 1},
-                new LegRegistration {LegId = 4, GuestId = 2},
-                new LegRegistration {LegId = 6, GuestId = 4},
-                new LegRegistration {LegId = 6, GuestId = 3},
-                new LegRegistration {LegId = 6, GuestId = 1}
+                new GuestRegistration {LegId = 1, GuestId = 2},
+                new GuestRegistration {LegId = 1, GuestId = 3},
+                new GuestRegistration {LegId = 2, GuestId = 4},
+                new GuestRegistration {LegId = 2, GuestId = 1},
+                new GuestRegistration {LegId = 3, GuestId = 1},
+                new GuestRegistration {LegId = 4, GuestId = 2},
+                new GuestRegistration {LegId = 6, GuestId = 4},
+                new GuestRegistration {LegId = 6, GuestId = 3},
+                new GuestRegistration {LegId = 6, GuestId = 1}
 
             };
 
-            legReg.ForEach(lr=>db.LegRegistrations.Add(lr));
+            legReg.ForEach(lr=>db.GuestRegistrations.Add(lr));
             db.SaveChanges();
 
         }   

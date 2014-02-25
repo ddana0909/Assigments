@@ -1,0 +1,35 @@
+﻿@model TravelAgency.Models.GuestRegistration
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    
+    <fieldset>
+        <legend>Guest Registration</legend>
+
+        @Html.HiddenFor(model => model.LegId, new { @value = ViewBag.LegId })
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.GuestId)
+                @Html.DropDownList("GuestId",
+                          new SelectList(ViewBag.GuestList, "id", "value", 0), "Select a Guest",
+                          new { @class = "form-control " })
+                @Html.ValidationMessageFor(model => model.GuestId,null, new{@class="text-danger"})
+                <br/>
+                <p>
+                    <input type="submit" class="btn btn-success" value="Add" />
+                </p>
+                <br/>
+            </div>
+        </div>
+    </fieldset>
+}
+

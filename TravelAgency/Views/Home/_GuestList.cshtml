@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TravelAgency.Models.Guest>
+<script>
+    $(function() {
+        $("[data-toggle='tooltip']").tooltip();
+    });
+
+    function addGuest(id) {
+        $.ajax({
+            url: '@Url.Action("Create","GuestRegistration")',
+            data: {legId : id},
+            success: function (data) {
+                $('#registerForm').html(data);
+            }
+        });
+    }
+
+</script>
+
+<div class="modal-content">
+    <div class="modal-header text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Guests on leg
+            <br />
+            from <b>@ViewBag.Start</b> to <b>@ViewBag.Finish</b> </h4>
+    </div>
+    <div class="modal-body">
+        @if (@ViewBag.NoGuests == "empty")
+        {
+            <div class="text-center">
+                <em>There are no guests in this leg yet!</em>
+                <br/>
+            </div>
+            
+        }
+        
+        @if (@ViewBag.NoGuests != "empty")
+        {
+            <div class="col-md-offset-1">
+                <h4>
+                    <b>
+                        <em>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </em>
+                    </b>
+                </h4>
+
+                @foreach (var item in Model)
+                {
+
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                    <br />
+                }
+
+            </div>
+        }
+        <br/>
+        <div class="col-md-offset-5" onclick='addGuest(@ViewBag.LegId)'>
+            <button class="btn btn-success btn-lg"
+                data-toggle="tooltip"
+                data-placement="right"
+                title=""
+                data-original-title="Add Guest to this leg">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </div>
+
+    </div>
+<div class="col-md-offset-1" id="registerForm"></div>
+</div>

@@ -22,6 +22,8 @@
         }
 
 
+ 
+
     </script>
 }
 <h2>Trips</h2>
@@ -29,6 +31,15 @@
 <p>
     @Html.ActionLink("Add New Trip", "Create")
 </p>
+
+
+<div id="guestsModal" class="modal fade" role="dialog" aria-hidden="true">
+    <br />
+    <br />
+    <br />
+    <div class="col-md-offset-4 col-md-4" id="guestsDetails">
+    </div>
+</div>
 
 
 @foreach (var item in Model)

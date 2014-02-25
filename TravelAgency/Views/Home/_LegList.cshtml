@@ -1,7 +1,22 @@
 ﻿@model IEnumerable<TravelAgency.Models.Leg>
 
 
-
+<script>
+ 
+    function black(id) {
+        alert(id);
+    }
+    function showGuests(id) {
+        $.ajax({
+            url: '@Url.Action("GetGuestsOnLeg")', 
+            data: { legId: id },
+            success: function (data) {
+                $('#guestsModal').modal("show");
+                $("#guestsDetails").html(data).modal("show");
+            }
+        });
+    }
+</script>
 
 
 @foreach (var item in Model)
@@ -24,7 +39,9 @@
 
         </div>
         <div class="col-md-1">
-            <span class="badge">@Html.DisplayFor(modelItem => item.LegRegistrations.Count) Guests</span>
+            <span class="badge" onclick="showGuests(@item.Id)" style="cursor: pointer">
+                @Html.DisplayFor(modelItem => item.LegRegistrations.Count) Guests
+            </span>
         </div>
     </div>
     <br />

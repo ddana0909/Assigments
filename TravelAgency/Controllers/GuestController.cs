@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace TravelAgency.Controllers
 {
-    public class Default1Controller : Controller
+    public class GuestController : Controller
     {
         //
         // GET: /Default1/

@@ -27,7 +27,6 @@ namespace TravelAgency.Controllers
         public ActionResult TripDetails(int tripId)
         {
             var legs = _repository.GetLegsForTrip(tripId);
-            var x = legs.ToList();
             return PartialView("_LegList", legs);
         }
 
@@ -50,14 +49,20 @@ namespace TravelAgency.Controllers
 
                 return RedirectToAction("Index");
             }
-            else
-            {
-                return View();
-            }
+            return View();
         }
 
 
-
-        
+        public ActionResult GetGuestsOnLeg(int legId)
+        {
+            var guests = _repository.GetGuestsOnLeg(legId);
+            if (!guests.Any())
+                ViewBag.NoGuests = "empty";
+            var leg = _repository.GetLeg(legId);
+            ViewBag.Start = leg.StartLocation;
+            ViewBag.Finish = leg.FinishLocation;
+            ViewBag.LegId = leg.Id;
+            return PartialView("_GuestList",guests);
+        }
     }
 }
