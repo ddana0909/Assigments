@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TravelAgency.Models.Leg>
+﻿@using Microsoft.Ajax.Utilities
+@model IEnumerable<TravelAgency.Models.Leg>
 
 
 <script>
@@ -16,14 +17,24 @@
             }
         });
     }
+
+
+    
 </script>
 
+<div id="guestsModal" class="modal fade" role="dialog" aria-hidden="true">
+    <br />
+    <br />
+    <br />
+    <div class="col-md-offset-4 col-md-4" id="guestsDetails">
+    </div>
+</div>
 
 @foreach (var item in Model)
-{
+{   
     <div class="row">
         <div class="col-md-2">
-            <button class="btn btn-info btn-xs">Book Now</button>
+          <button class="btn btn-info btn-xs">Book Now</button>
 
         </div>
         <div class="col-md-9">

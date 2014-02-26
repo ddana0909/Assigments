@@ -12,36 +12,16 @@ namespace TravelAgency.Controllers
         {
             _repository = repository;
         }
-        
-        
-        //
-        // GET: /GuestRegistration/
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        //
-        // GET: /GuestRegistration/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
-        // GET: /GuestRegistration/Create
 
         public ActionResult Create(int legId)
         {
             ViewBag.GuestList = _repository.GetGuests().Select(g=>new{id=g.Id, value=g.FirstName}).Distinct();
             ViewBag.LegId = legId;
+            
+            
             return PartialView();
         }
 
-        //
-        // POST: /GuestRegistration/Create
 
         [HttpPost]
         public ActionResult Create(GuestRegistration registration)
@@ -49,6 +29,8 @@ namespace TravelAgency.Controllers
             if (ModelState.IsValid)
             {
                 _repository.AddGuestRegistration(registration);
+                var leg=_repository.GetLeg(registration.LegId);
+                UpdateViable(leg.TripId);                 
                 return RedirectToAction("Index", "Home");
             }
             ViewBag.GuestList = _repository.GetGuests().Select(g => new { id = g.Id, value = g.FirstName }).Distinct();
@@ -56,64 +38,26 @@ namespace TravelAgency.Controllers
             return PartialView();
         }
 
-
-
-        //
-        // GET: /GuestRegistration/Edit/5
-
-        public ActionResult Edit(int id)
+        public JsonResult IsAlreadyRegistered(int guestId , int legId)
         {
-            return View();
-        }
-
-        //
-        // POST: /GuestRegistration/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /GuestRegistration/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /GuestRegistration/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        public JsonResult IsAlreadyRegistered(int guestid, int legid)
-        {
-            return Json(_repository.GetGuestRegistrationsByLegAndGuest(legid, guestid).Any(),
+            return Json(_repository.GetGuestRegistrationsByLegAndGuest(legId, guestId).Any(),
                 JsonRequestBehavior.AllowGet);
+        }
+
+
+        public void UpdateViable(int tripId)
+        {
+            var trip = _repository.GetTrip(tripId);
+            if (IsViable(trip))
+            {
+                trip.Viable = true;
+                _repository.UpdateTrip(trip);
+            }
+        }
+
+        public bool IsViable(Trip trip)
+        {
+            return (_repository.GetNoGuestsOnTrip(trip.Id) >= trip.MinimumGuests);
         }
     }
     }

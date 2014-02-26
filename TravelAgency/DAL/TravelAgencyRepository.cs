@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web.UI.WebControls;
 using TravelAgency.Models;
-using WebGrease.Css.Extensions;
 
 namespace TravelAgency.DAL
 {
@@ -41,6 +39,22 @@ namespace TravelAgency.DAL
         public IQueryable<Leg> GetLegsForTrip(int tripId)
         {
             return Entities.Legs.Where(t=>t.TripId == tripId).SortBy("StartDate");            
+        }
+
+        public int GetNoGuestsOnTrip(int tripId)
+        {
+            var guestReg = Entities.GuestRegistrations.Where(r => r.Leg.TripId == tripId);
+                 
+            return  Enumerable.Count(guestReg.Select(registration => registration.GuestId), guestId => guestReg.Where(g => g.GuestId == guestId).Distinct().Count() > 2);
+
+            /*var numbeofGuests = 0;
+            foreach (var registration in guestReg)
+            {
+                var guestId = registration.GuestId;
+                if (guestReg.Where(g => g.GuestId == guestId).Distinct().Count() > 2)
+                    numbeofGuests++;
+
+            }*/      
         }
 
         public IQueryable<Guest> GetGuests()

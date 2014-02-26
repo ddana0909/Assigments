@@ -19,7 +19,9 @@ namespace TravelAgency.Controllers
 
         public ActionResult Create()
         {
+         
             ViewBag.TripList = _repository.GetAllTrips().Select(t => new { id = t.Id, value = t.Name }).Distinct();
+            
             return View();
         }
 
@@ -87,21 +89,7 @@ namespace TravelAgency.Controllers
             }
         }
 
-        public bool IsViable(Trip trip)
-        {
-
-            return true;
-        }
-
-        public void UpdateViable(int tripId)
-        {
-            var trip = _repository.GetTrip(tripId);
-            if (IsViable(trip))
-            {
-                trip.Viable = true;
-                _repository.UpdateTrip(trip);
-            }
-        }
+    
         [HttpPost]
         public JsonResult StartDateOutsideTrip(DateTime startdate, int tripId)
         {
@@ -128,6 +116,28 @@ namespace TravelAgency.Controllers
             return Json(!(DateTime.Compare(finishdate, trip.StartDate) < 0 
                        || DateTime.Compare(finishdate, trip.FinishDate) > 0),JsonRequestBehavior.AllowGet);
 
+        }
+
+        public JsonResult GetBookedDays(int tripId)
+        {
+            var legs = _repository.GetLegsForTrip(tripId);
+            var trip = _repository.GetTrip(tripId);
+            var bookedDays = new List<String>();
+
+            bookedDays.Add(trip.StartDate.ToShortDateString());
+            bookedDays.Add(trip.FinishDate.ToShortDateString());
+            
+            foreach (var leg in legs)
+            {
+                var aux = leg.StartDate;
+                while (DateTime.Compare(aux, leg.FinishDate.AddDays(-1)) <= 0)
+                {
+                    bookedDays.Add(aux.ToShortDateString());
+                    aux = aux.AddDays(1);
+                }
+            }
+           
+            return Json(bookedDays,JsonRequestBehavior.AllowGet);
         }
     }
 }

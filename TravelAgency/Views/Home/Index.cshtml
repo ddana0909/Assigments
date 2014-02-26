@@ -20,12 +20,10 @@
                 }
             });
         }
-
-
- 
-
+        
     </script>
 }
+
 <h2>Trips</h2>
 
 <p>
@@ -59,7 +57,7 @@
                     @Html.DisplayFor(modelItem => item.FinishDate)</h4>
             </div>
             <div class="row text-center">
-                <span class="badge">Guests</span>
+                <span class="badge">Min @item.MinimumGuests Guests</span>
             </div>
             <br />
             <div class="row">
@@ -68,14 +66,14 @@
                         @Html.DisplayNameFor(model => model.Viable)
                     </div>
                     <div class="row">
-                        @if (@item.Viable == true)
+                        @if (@item.Viable)
                         {
                             <button
                                 class="btn-default btn-sm btn-success"
                                 data-toggle="tooltip"
                                 data-placement="bottom"
                                 title=""
-                                data-original-title="Minimum number of Guest is ...">
+                                data-original-title="Minimum number of Guest is reached">
                                 <span class="glyphicon glyphicon-ok"></span>
                             </button> 
                                                
@@ -88,7 +86,7 @@
                                 data-toggle="tooltip"
                                 data-placement="bottom"
                                 title=""
-                                data-original-title="The minimum number of guests is not achieved yet ...">
+                                data-original-title="The minimum number of guests is not reached yet">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button> 
                         }
@@ -100,14 +98,14 @@
                         @Html.DisplayNameFor(model => model.Complete)
                     </div>
                     <div class="row">
-                        @if (@item.Complete == true)
+                        @if (@item.Complete)
                         {
                             <button
                                 class="btn-default btn-sm btn-success"
                                 data-toggle="tooltip"
                                 data-placement="bottom"
                                 title=""
-                                data-original-title="Legs are planned for each day in the period">
+                                data-original-title="Legs are planned for each day of the trip">
                                 <span class="glyphicon glyphicon-ok"></span>
                             </button> 
                         }

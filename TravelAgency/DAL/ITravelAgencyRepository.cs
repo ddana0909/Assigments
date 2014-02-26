@@ -13,6 +13,7 @@ namespace TravelAgency.DAL
         IEnumerable<Guest> GetGuestsOnLeg(int legId);
         IQueryable <Leg> GetLegsForTrip(int tripId);
 
+        int GetNoGuestsOnTrip(int tripId);
         IQueryable<Guest> GetGuests();
         IQueryable<GuestRegistration> GetGuestRegistrationsByLegAndGuest(int legId, int guestId); 
         void AddTrip(Trip trip);
