@@ -8,19 +8,32 @@
 {
     <script type="text/javascript">
 
-        $(function () {
+        $(function() {
             $("[data-toggle='tooltip']").tooltip();
         });
+
+        function getTimeLine(id) {
+            $.ajax({
+                url: '@Url.Action("GetProgressBar")',
+                data: { tripId: id },
+                success: function (data) {
+                    $('#timeline_' + id).html(data);
+                }
+            });
+        }
         function getTripDetails(tripId) {
+            getTimeLine(tripId);
             $.ajax({
                 url: '@Url.Action("TripDetails")',
                 data: { tripId: tripId },
-                success: function (data) {
+                success: function(data) {
                     $('#m_' + tripId).html(data);
                 }
             });
         }
-        
+
+     
+
     </script>
 }
 
@@ -128,8 +141,11 @@
         </div>
         <div class="col-md-5" id="m_@item.Id"></div>
     </div>
+    <div class=" row" id="timeline_@item.Id">
+        
+    </div>
     <br/>
-    <br/>
+    <br />
 }
 
 
