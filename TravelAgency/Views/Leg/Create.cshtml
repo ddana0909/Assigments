@@ -1,114 +1,135 @@
 ﻿@model TravelAgency.Models.Leg
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Add a Leg";
 }
 <head>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 </head>
-<div class="col-md-5">
-    @section scripts
+
+@section scripts
     {
-        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
-        <script>
-            $(function () {
-                $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
-                $('#datepicker1').datepicker({ dateFormat: 'dd/mm/yy' });
+    <script>
+        $(function () {
+            $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
+            $('#datepicker1').datepicker({ dateFormat: 'dd/mm/yy' });
 
-            });
+        });
 
-            var unavailableDates;
-            var startDate;
-            var finishDate;
+        var unavailableDates;
+        var startDate;
+        var finishDate;
 
-            function unavailable(date) {
-                var dmy = date.getDate() + "/0" + (date.getMonth() + 1) + "/" + date.getFullYear();
-                if ($.inArray(dmy, unavailableDates) == -1) {
-                    return [true, ""];
-                } else {
-                    return [false, "", "Another trip is planned here"];
+        function unavailable(date) {
+            var dmy = date.getDate() + "/0" + (date.getMonth() + 1) + "/" + date.getFullYear();
+            if ($.inArray(dmy, unavailableDates) == -1) {
+                return [true, ""];
+            } else {
+                return [false, "", "Another trip is planned here"];
+            }
+        }
+
+        function getBookedDays(id) {
+            $.ajax({
+
+                url: '/Leg/GetBookedDays',
+                data: { tripId: id },
+                success: function (data) {
+                    startDate = data[0].replace("/", "-").replace("/", "-");
+                    finishDate = data[1].replace("/", "-").replace("/", "-");
+                    data.shift();
+                    data.shift();
+
+                    unavailableDates = data;
                 }
-            }
-
-            function getBookedDays(id) {
-                $.ajax({
-
-                    url: '/Leg/GetBookedDays',
-                    data: { tripId: id },
-                    success: function (data) {
-                        startDate = data[0].replace("/","-").replace("/","-");
-                        finishDate = data[1].replace("/","-").replace("/","-");
-                        data.shift();
-                        data.shift();
-                    
-                        unavailableDates = data;
-                    }
-                });
-            }
-
-            $(function () {
-                $('#date').datepicker({
-                    dateFormat: 'dd/mm/yy',
-                    minDate: new Date(startDate),
-                    maxDate: new Date(finishDate),
-                    beforeShowDay: unavailable
-                });
             });
+        }
 
-        </script>
+        $(function () {
+            $('#date').datepicker({
+                dateFormat: 'dd/mm/yy',
+                minDate: new Date(startDate),
+                maxDate: new Date(finishDate),
+                beforeShowDay: unavailable
+            });
+        });
 
+    </script>
+
+}
+<style>
+    .spaceIt {
+        margin-bottom: 20px;
+        margin-left: 70px;
+    }
+    .spaceTop {
+        margin-top: 50px;
     }
 
+</style>
+
+<div class="row spaceTop">
+    
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
+        <div class=" col-md-offset-3 col-md-6 well-lg well ">
+            <fieldset>
+                <legend>Leg</legend>
 
-        <fieldset>
-            <legend>Leg</legend>
+                <div class="form-group">
 
-            <div class="form-group">
-
-                @Html.LabelFor(model => model.Trip.Id)
-                @Html.DropDownList("TripId",
+                    @Html.LabelFor(model => model.Trip.Id)
+                    @Html.DropDownList("TripId",
                         new SelectList(ViewBag.TripList, "id", "value", 0), "Select a trip",
-                            new { @class = "form-control ", onchange = "getBookedDays(value)" })
-                @Html.ValidationMessageFor(model => model.TripId, null, new { @class = "text-danger" })
-            </div>
+                        new { @class = "form-control ", onchange = "getBookedDays(value)" })
+                    @Html.ValidationMessageFor(model => model.TripId, null, new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.StartLocation)
-                @Html.TextBoxFor(model => model.StartLocation, new { @class = "form-control", placeholder = "Name of the trip" })
-                @Html.ValidationMessageFor(model => model.StartLocation, null, new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StartLocation)
+                    @Html.TextBoxFor(model => model.StartLocation, new { @class = "form-control", placeholder = "Name of the trip" })
+                    @Html.ValidationMessageFor(model => model.StartLocation, null, new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.FinishLocation)
-                @Html.TextBoxFor(model => model.FinishLocation, new { @class = "form-control", placeholder = "Name of the trip" })
-                @Html.ValidationMessageFor(model => model.FinishLocation, null, new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FinishLocation)
+                    @Html.TextBoxFor(model => model.FinishLocation, new { @class = "form-control", placeholder = "Name of the trip" })
+                    @Html.ValidationMessageFor(model => model.FinishLocation, null, new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.StartDate)
-                @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", id = "date" })
-                @Html.ValidationMessageFor(model => model.StartDate, null, new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StartDate)
+                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", id = "date" })
+                    @Html.ValidationMessageFor(model => model.StartDate, null, new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.FinishDate)
-                @Html.TextBoxFor(model => model.FinishDate, new { @class = "form-control", id = "datepicker1" })
-                @Html.ValidationMessageFor(model => model.FinishDate, null, new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FinishDate)
+                    @Html.TextBoxFor(model => model.FinishDate, new { @class = "form-control", id = "datepicker1" })
+                    @Html.ValidationMessageFor(model => model.FinishDate, null, new { @class = "text-danger" })
+                </div>
 
+                <br />
+                <p>
+                    <input class=" col-md-12 btn btn-info" type="submit" value="Add New Leg" />
+                </p>
+            </fieldset>
 
-            <p>
-                <input class="col-md-offset-1 col-md-10 btn btn-info" type="submit" value="Add New Leg" />
-            </p>
-        </fieldset>
+        </div>
     }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index", "Home")
-    </div>
 </div>
+
+
+    <div class="nav navbar-brand navbar-fixed-bottom spaceIt">
+        @Html.ActionLink("Back to List", "Index", "Home")
+        <br />
+        <br />
+      
+    </div>
+
+
+

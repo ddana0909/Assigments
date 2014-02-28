@@ -18,6 +18,7 @@
                 data: { tripId: id },
                 success: function (data) {
                     $('#timeline_' + id).html(data);
+                    $("[data-toggle='tooltip']").tooltip();
                 }
             });
         }
@@ -141,8 +142,10 @@
         </div>
         <div class="col-md-5" id="m_@item.Id"></div>
     </div>
-    <div class=" row" id="timeline_@item.Id">
-        
+    <div class="row"  >
+        <div class="col-md-7" id="timeline_@item.Id">
+            
+        </div>
     </div>
     <br/>
     <br />

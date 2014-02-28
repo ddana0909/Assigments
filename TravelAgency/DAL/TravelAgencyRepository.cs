@@ -16,7 +16,7 @@ namespace TravelAgency.DAL
         }
         public IQueryable<Trip> GetAllTrips()
         {
-            return Entities.Trips;
+            return Entities.Trips.OrderBy(t=>t.StartDate);
         }
 
         public Trip GetTrip(int? tripId)
@@ -59,7 +59,7 @@ namespace TravelAgency.DAL
 
         public IQueryable<Guest> GetGuests()
         {
-            return Entities.Guests;
+            return Entities.Guests.OrderBy(g=>g.FirstName);
         }
 
         public IQueryable<GuestRegistration> GetGuestRegistrationsByLegAndGuest(int legId, int guestId)

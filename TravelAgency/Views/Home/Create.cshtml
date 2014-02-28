@@ -2,6 +2,9 @@
 <head>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 </head>
+@{
+    ViewBag.Title = "Add Trip";
+}
 
 @section scripts
 {
@@ -28,7 +31,7 @@
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
-        <div class="col-md-5">
+        <div class="col-md-offset-3 well col-md-6">
             <fieldset>
                 <legend>New Trip</legend>
 
@@ -57,15 +60,12 @@
                     @Html.TextBoxFor(model => model.MinimumGuests, new { @class = "form-control", placeholder = "Mimimum Number of Guest for trip to be considered Viable" })
                     @Html.ValidationMessageFor(model => model.MinimumGuests,null, new { @class = "text-danger" })
                 </div>
-                <input type="submit" class="btn btn-default" value="Create"/>
+                <br/>
+                <br/>
+                <input type="submit" class="btn btn-success col-md-12" value="Create"/>
             </fieldset>
         </div>
-        <div class="col-md-1 text-center">
-            <p>
-                Add Legs                
-                <button  type="submit" class="btn btn-default btn-success btn-lg"><span class="glyphicon glyphicon-plus"></span></button>                
-            </p>
-        </div>
+        
         <div class="col-md-6"></div>
 
     }

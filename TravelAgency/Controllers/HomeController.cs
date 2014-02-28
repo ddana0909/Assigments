@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using TravelAgency.DAL;
@@ -73,31 +72,27 @@ namespace TravelAgency.Controllers
 
             var trip = _repository.GetTrip(tripId);
             var legs = _repository.GetLegsForTrip(tripId);
-            string[] cssClasses = new string[3] { "progress-bar progress-bar-success", 
-                                                  "progress-bar progress-bar-info", 
-                                                  "progress-bar progress-bar-warning"}
-                                                  ;
-
 
             var tripPeriod = trip.FinishDate.Subtract(trip.StartDate).TotalDays;
             var list = new List<TripTimelineElement>();
-            int i = 0;
+
             var auxFinish = trip.StartDate;
+            var progress = 0;
             foreach (var leg in legs)
             {
 
-                //inseamna ca avem gap
                 if (auxFinish != leg.StartDate)
                 {
                     var period = leg.StartDate.Subtract(auxFinish).TotalDays;
                     var yyy = new TripTimelineElement
                     {
-                        StartDate = auxFinish.ToShortDateString(),
-                        FinishDate = leg.StartDate.ToShortDateString(),
+                        StartDate = auxFinish.ToString("dd/MM"),
+                        FinishDate = leg.StartDate.ToString("dd/MM"),
                         Percentage = (int)(period / tripPeriod * 100),
                         CssClass = "progress-bar progress-bar-danger",
                         NotPlanned = true
                     };
+                    progress += yyy.Percentage;
 
                     list.Add(yyy);
                 }
@@ -107,30 +102,39 @@ namespace TravelAgency.Controllers
                     var yyy = new TripTimelineElement
                     {
                         Percentage = (int)(legPeriod / tripPeriod * 100),
-                        StartDate = leg.StartDate.ToShortDateString(),
-                        FinishDate = leg.FinishDate.ToShortDateString(),
+                        StartDate = leg.StartDate.ToString("dd/MM"),
+                        FinishDate = leg.FinishDate.ToString("dd/MM"),
                         CssClass = "progress-bar progress-bar-success",
                         NotPlanned = false
 
                     };
                     list.Add(yyy);
+                    progress += yyy.Percentage;
                 }
-              
+
                 auxFinish = leg.FinishDate;
             }
-            if(auxFinish!=trip.FinishDate)
-                list.Add(
-            new TripTimelineElement{
-                Percentage=(int)(trip.FinishDate.Subtract(auxFinish).TotalDays/tripPeriod*100),
-                StartDate = auxFinish.ToShortDateString(),
-                FinishDate = trip.FinishDate.ToShortDateString(),
-                CssClass = "progress-bar progress-bar-danger",
-                NotPlanned = true
-            }
-        );
-            
+            if (auxFinish != trip.FinishDate)
+            {
 
-            return View("_TimeLine", list);
+                var yyy = new TripTimelineElement
+                 {
+                     Percentage = (int)(trip.FinishDate.Subtract(auxFinish).TotalDays / tripPeriod * 100),
+                     StartDate = auxFinish.ToString("dd/MM"),
+                     FinishDate = trip.FinishDate.ToString("dd/MM"),
+                     CssClass = "progress-bar progress-bar-danger",
+                     NotPlanned = true
+                 };
+                list.Add(yyy);
+                progress += yyy.Percentage;
+            }
+
+            if (progress != 100)
+            {
+                list.Last().Percentage += (100 - progress);
+            }
+
+            return PartialView("_TimeLine", list);
         }
     }
 }

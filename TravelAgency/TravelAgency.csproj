@@ -244,15 +244,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Images\default.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Egypt.jpg" />
     <Content Include="Images\Greece.jpg" />
+    <Content Include="Images\Japan.jpg" />
     <Content Include="Images\Russia.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\USA.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\buttons.js" />

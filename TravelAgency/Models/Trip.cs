@@ -21,7 +21,7 @@ namespace TravelAgency.Models
         [GreaterThan("StartDate")]
         public DateTime FinishDate { get; set; }
         
-        [Range(5,60,ErrorMessage = "{0} has to be a number between {1} and {2}")]
+        [Range(3,60,ErrorMessage = "{0} has to be a number between {1} and {2}")]
         [DisplayName("Minumum Number of Guests")]
         public int MinimumGuests { get; set; }
         
