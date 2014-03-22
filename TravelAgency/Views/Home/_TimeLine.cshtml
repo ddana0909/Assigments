@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TravelAgency.HelperClasses.TripTimelineElement>
+
+<div class="progress">
+    
+@{
+    int i = 0;
+    foreach (var item in Model)
+    {
+        
+        if (@item.NotPlanned)
+        {
+            <div data-toggle="tooltip"
+                 data-placement="bottom"
+                 title=""
+                 data-original-title="A leg is not planned for this period" 
+                 class="@Html.DisplayFor(modelItem => item.CssClass)" style="width: @item.Percentage%;">
+                @Html.DisplayFor(modelItem => item.StartDate) - @Html.DisplayFor(modelItem => item.FinishDate) 
+                 
+                <span class="sr-only"></span>
+            </div>
+        }
+        if (@item.NotPlanned == false)
+
+        {  i++;
+            <div 
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title=""
+                data-original-title="Leg is Planned"
+                class="@Html.DisplayFor(modelItem => item.CssClass)" style="width: @item.Percentage%">
+                Leg @i
+                <span class="sr-only"></span> 
+            </div>
+        }
+    }
+}
+    </div >
+
+

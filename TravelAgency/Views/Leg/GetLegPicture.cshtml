@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "GetLegPicture";
+}
+
+<h2>GetLegPicture</h2>
+<ul>
+   
+    @foreach (var image in Model){
+        <li><img src='@image' /><br /></li> 
+    }
+</ul>
