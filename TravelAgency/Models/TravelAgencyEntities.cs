@@ -9,10 +9,10 @@ namespace TravelAgency.Models
         public DbSet<Trip> Trips { get; set; }
         public DbSet<GuestRegistration> GuestRegistrations { get; set; }
 
-        public TravelAgencyEntities()
+        public TravelAgencyEntities():base("DatabaseConnection")
            
         {
-            Database.SetInitializer(new TravelAcencyInitializer());
+           // Database.SetInitializer(new TravelAcencyInitializer());
         }
 
         

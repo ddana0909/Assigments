@@ -39,6 +39,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IQToolkit">
+      <HintPath>..\packages\LinqToWiki.Core.1.2.0\Lib\net40-client\IQToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqToWiki.Core">
+      <HintPath>..\packages\LinqToWiki.Core.1.2.0\Lib\net40-client\LinqToWiki.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqToWiki.Generated">
+      <HintPath>..\packages\LinqToWiki.1.4.1\Lib\net40-client\LinqToWiki.Generated.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
@@ -48,6 +57,9 @@
     </Reference>
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC3.3.0.0.6\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -169,10 +181,14 @@
     <Compile Include="HelperClasses\DataRangeAttribute.cs" />
     <Compile Include="HelperClasses\GreaterThanAttribute.cs" />
     <Compile Include="HelperClasses\TripTimelineElement.cs" />
+    <Compile Include="Migrations\201403052000216_InitialCreate.cs" />
+    <Compile Include="Migrations\201403052000216_InitialCreate.Designer.cs">
+      <DependentUpon>201403052000216_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\Leg.cs" />
     <Compile Include="Models\GuestRegistration.cs" />
-    <Compile Include="Models\TravelAcencyInitializer.cs" />
     <Compile Include="Models\TravelAgencyEntities.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -308,9 +324,15 @@
     <Content Include="Views\Home\_GuestList.cshtml" />
     <Content Include="Views\GuestRegistration\Create.cshtml" />
     <Content Include="Views\Home\_TimeLine.cshtml" />
+    <Content Include="Views\Leg\GetLegPicture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201403052000216_InitialCreate.resx">
+      <DependentUpon>201403052000216_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

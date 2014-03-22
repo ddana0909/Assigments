@@ -6,18 +6,32 @@
     function black(id) {
         alert(id);
     }
+ 
+  
     function showGuests(id) {
         $.ajax({
             url: '@Url.Action("GetGuestsOnLeg")',
-            data: { legId: id },
-            success: function (data) {
-                $('#guestsModal').modal("show");
-                $("#guestsDetails").html(data).modal("show");
-            }
-        });
-    }
+                data: { legId: id },
+                success: function (data) {
+                    $('#guestsModal').modal("show");
+                    $("#guestsDetails").html(data).modal("show");
+                }
+            });
+        }
+    //function getLegPicture(cityName, legId) {
+    //    $.ajax({
+    //        url: 'http://en.wikipedia.org/w/api.php?action=query&prop=images&format=json&imlimit=1&titles=' + cityName,
+    //        type: "Get",
+    //        success: function (data) {
 
+    //            var img = $("<img />").attr('src', data.result[0].images);
+    //            $(img).after('#' + legId);
+    //        }
 
+    //    });
+    //}
+    
+   
 
 </script>
 
@@ -34,13 +48,13 @@
     foreach (var item in Model)
     {
         i++;
-        <div class="row">
+        <div class="row" id="@item.Id">
             <div class="col-md-2 text-right" >
                 <div class="btn btn-info btn-xs">@i.</div>
 
             </div>
-            <div class="col-md-9">
-
+           @* <div class="col-md-9" onclick=" getLegPicture('@item.FinishLocation',@item.Id) " style="cursor: pointer">*@
+    <div class="col-md-9" onclick="location.href='@Url.Action("GetLegPicture","Leg",new{cityName=item.FinishLocation})'" style="cursor: pointer">
                 <strong>
                     @Html.DisplayFor(modelItem => item.StartLocation) -
                     @Html.DisplayFor(modelItem => item.FinishLocation):

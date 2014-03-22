@@ -18,7 +18,7 @@
 
         });
 
-        var unavailableDates;
+        var unavailableDates=[];
         var startDate;
         var finishDate;
 
@@ -37,25 +37,29 @@
                 url: '/Leg/GetBookedDays',
                 data: { tripId: id },
                 success: function (data) {
-                    startDate = data[0].replace("/", "-").replace("/", "-");
-                    finishDate = data[1].replace("/", "-").replace("/", "-");
+                    startDate = data[0];
+                    finishDate = data[1];
                     data.shift();
                     data.shift();
-
-                    unavailableDates = data;
+                    unavailableDates = [];
+                    unavailableDates = unavailableDates.concat(data);
+                    initDatePicker();
                 }
             });
+           
         }
 
-        $(function () {
+        function initDatePicker()
+        {
             $('#date').datepicker({
                 dateFormat: 'dd/mm/yy',
-                minDate: new Date(startDate),
-                maxDate: new Date(finishDate),
+                minDate: startDate,
+                maxDate: finishDate,
+                constrainInput: true,
                 beforeShowDay: unavailable
             });
-        });
-
+        }
+        
     </script>
 
 }

@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
+using System.Security.Cryptography;
+using LinqToWiki;
+using LinqToWiki.Generated;
+using LinqToWiki.Generated.Entities;
+using Microsoft.Ajax.Utilities;
 using TravelAgency.DAL;
 using System.Web.Mvc;
 using TravelAgency.Models;
@@ -139,5 +145,21 @@ namespace TravelAgency.Controllers
            
             return Json(bookedDays,JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult GetLegPicture(string cityName)
+        {
+            var wiki = new Wiki("Example");
+            var query = wiki.Query.allimages().Where(i => i.prefix==cityName).Select(s => s.url).ToEnumerable();
+            var pages = (from p in wiki.Query.search(cityName+ "City")
+                select p).Pages.Select(page =>page.images().Select(x=>x.title).ToList()
+                   ).ToEnumerable();
+   
+            
+
+            //return View(pages.FirstOrDefault());
+            return View(query);
+        }
+  
     }
+
 }

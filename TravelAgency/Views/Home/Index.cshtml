@@ -16,12 +16,13 @@
             $.ajax({
                 url: '@Url.Action("GetProgressBar")',
                 data: { tripId: id },
-                success: function (data) {
+                success: function(data) {
                     $('#timeline_' + id).html(data);
                     $("[data-toggle='tooltip']").tooltip();
                 }
             });
         }
+
         function getTripDetails(tripId) {
             getTimeLine(tripId);
             $.ajax({
@@ -33,7 +34,7 @@
             });
         }
 
-     
+  
 
     </script>
 }
