@@ -178,7 +178,6 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\GuestAPIController.cs" />
     <Compile Include="Controllers\GuestRegistrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LegApiController.cs" />
@@ -333,13 +332,11 @@
     <Content Include="packages.config" />
     <None Include="readme.txt" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\_LegList.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Leg\Create.cshtml" />
     <Content Include="Views\Home\_GuestList.cshtml" />
     <Content Include="Views\GuestRegistration\Create.cshtml" />
     <Content Include="Views\Home\_TimeLine.cshtml" />
-    <Content Include="Views\Leg\GetLegPicture.cshtml" />
     <Content Include="Scripts\toastr.min.js.map" />
   </ItemGroup>
   <ItemGroup>

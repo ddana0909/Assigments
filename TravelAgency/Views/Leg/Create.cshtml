@@ -31,7 +31,6 @@
                     data: { tripId: id },
                     success: function (data) {
                         $("#timeline").html(data);
-
                         var xText = $("#TripId :selected").text();
                         document.getElementById("title").innerHTML = "";
                         $("<div><h2>" + xText + "</h2></div>").appendTo("#title");
@@ -49,10 +48,11 @@
     }
 
     .spaceTop {
-        margin-top: 50px;
+        margin-top: 5%;
     }
 </style>
 
+ 
 
 <div class="row spaceTop">
                         
@@ -116,14 +116,8 @@
   
     }
 </div>
-
-
-    <div class="nav navbar-brand navbar-fixed-bottom spaceIt">
-        @Html.ActionLink("Back to List", "Index", "Home")
-        <br />
-        <br />
-      
-    </div>
+   @Html.ActionLink("Back to List", "Index", "Home")    
+     
 
 
 

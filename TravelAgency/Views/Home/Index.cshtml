@@ -6,24 +6,12 @@
 
 @section scripts
 {
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
     <script type="text/javascript">
 
         $(function () {
             $("[data-toggle='tooltip']").tooltip();
         });
         
-        function showGuests(id) {
-            $.ajax({
-                url: '@Url.Action("GetGuestsOnLeg")',
-                data: { legId: id },
-                success: function (data) {
-                    $('#guestsModal').modal("show");
-                    $("#guestsDetails").html(data).modal("show");
-                }
-            });
-        }
-
         function getTimeLine(id) {
             $.ajax({
                 url: '@Url.Action("GetProgressBar")',
@@ -53,11 +41,11 @@
                             "</div>" +
                             "<div class='col-md-9'>" +
                             "<strong>" + data[i].StartLocation + " - " + data[i].FinishLocation + " </strong>" +
-                            +new Date(data[i].StartDate).getDay() + "-" +
+                             new Date(data[i].StartDate).toLocaleDateString()+ "-" +
                              new Date(data[i].FinishDate).toLocaleDateString() +
                             "</div>" +
                             "<div class='col-md-1'>" +
-                                "<span class='badge' onclick=' showGuests('" + data[i].Id + "') style='cursor: pointer'>" +
+                                "<span class='badge' onclick='showGuests(" + data[i].Id + ")' style='cursor: pointer'>" +
                                     data[i].x + " Guests" +
                                  "</span>" +
                             "</div>" +
@@ -69,6 +57,17 @@
                 }
             });
 
+        }
+        
+        function showGuests(id) {
+            $.ajax({
+                url: '@Url.Action("GetGuestsOnLeg")',
+                data: { legId: id },
+                success: function (data) {
+                    $('#guestsModal').modal("show");
+                    $("#guestsDetails").html(data).modal("show");
+                }
+            });
         }
 
     </script>

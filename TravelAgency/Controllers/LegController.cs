@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LinqToWiki.Generated;
 using TravelAgency.DAL;
 using System.Web.Mvc;
 using TravelAgency.Models;
@@ -123,26 +122,6 @@ namespace TravelAgency.Controllers
         
         }
 
-        public IEnumerable<string> GetBookedDays(int tripId)
-        {
-            var legs = _repository.GetLegsForTrip(tripId);
-            var trip = _repository.GetTrip(tripId);
-            var bookedDays = new List<String> {trip.StartDate.ToShortDateString(), trip.FinishDate.ToShortDateString()};
-
-            foreach (var leg in legs)
-            {
-                var aux = leg.StartDate;
-                while (DateTime.Compare(aux, leg.FinishDate.AddDays(-1)) <= 0)
-                {
-                    bookedDays.Add(aux.ToShortDateString());
-                    aux = aux.AddDays(1);
-                }
-            }
-           
-            return bookedDays;
-        }
-
-
         public bool IsClashing(Leg newLeg)
         {
             var trip = _repository.GetTrip(newLeg.TripId);
@@ -160,17 +139,6 @@ namespace TravelAgency.Controllers
                
             } 
             return false;
-        }
-
-        public ActionResult GetLegPicture(string cityName)
-        {
-            var wiki = new Wiki("Example");
-            var query = wiki.Query.allimages().Where(i => i.prefix==cityName).Select(s => s.url).ToEnumerable();
-            var pages = (from p in wiki.Query.search(cityName+ "City")
-                select p).Pages.Select(page =>page.images().Select(x=>x.title).ToList()
-                   ).ToEnumerable();
-   
-            return View(query);
         }
   
     }
