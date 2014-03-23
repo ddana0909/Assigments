@@ -43,11 +43,7 @@ namespace TravelAgency.DAL
 
         public int GetNoGuestsOnTrip(int tripId)
         {
-            var guestReg = Entities.GuestRegistrations.Where(r => r.Leg.TripId == tripId);
-                 
-           // return  Enumerable.Count(guestReg.Select(registration => registration.GuestId), guestId => guestReg.Where(g => g.GuestId == guestId).Distinct().Count() >= 2);
-
-          // return Enumerable.Count(guestReg.Select(registration => registration.GuestId), guestId => guestReg.Where(g => g.GuestId == guestId).Select(a => a.LegId).Distinct().Count() >= 2);
+            var guestReg = Entities.GuestRegistrations.Where(r => r.Leg.TripId == tripId);     
             var guests = guestReg.Select(g => g.GuestId).Distinct();
             var numbeofGuests = 0;
             foreach (var guest in guests)
