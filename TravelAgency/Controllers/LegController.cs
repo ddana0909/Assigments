@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
-using System.Security.Cryptography;
-using LinqToWiki;
 using LinqToWiki.Generated;
-using LinqToWiki.Generated.Entities;
-using Microsoft.Ajax.Utilities;
 using TravelAgency.DAL;
 using System.Web.Mvc;
 using TravelAgency.Models;
@@ -36,15 +31,17 @@ namespace TravelAgency.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                _repository.AddLeg(newLeg);
-                UpdateComplete(newLeg.TripId);
-
-                return RedirectToAction("Index", "Home");
+                if (!IsClashing(newLeg))
+                {
+                    _repository.AddLeg(newLeg);
+                    UpdateComplete(newLeg.TripId);
+                    return RedirectToAction("Index", "Home");
+                }
+                ViewBag.ErrorMessage = "Dates are clashing on other legs. Check timeline";
             }
 
-
             ViewBag.TripList = _repository.GetAllTrips().Select(t => new { id = t.Id, value = t.Name }).Distinct();
+        
             return View();
 
         }
@@ -106,7 +103,7 @@ namespace TravelAgency.Controllers
 
             if (DateTime.Compare(startdate, trip.FinishDate) > 0)
                 return Json(false, JsonRequestBehavior.AllowGet);
-            
+
             return Json(true,JsonRequestBehavior.AllowGet);
 
             //return
@@ -119,12 +116,14 @@ namespace TravelAgency.Controllers
         public JsonResult FinishDateOutsideTrip(DateTime finishdate, int tripId)
         {
             var trip = _repository.GetTrip(tripId);
+
             return Json(!(DateTime.Compare(finishdate, trip.StartDate) < 0 
                        || DateTime.Compare(finishdate, trip.FinishDate) > 0),JsonRequestBehavior.AllowGet);
 
+        
         }
 
-        public JsonResult GetBookedDays(int tripId)
+        public IEnumerable<string> GetBookedDays(int tripId)
         {
             var legs = _repository.GetLegsForTrip(tripId);
             var trip = _repository.GetTrip(tripId);
@@ -143,7 +142,55 @@ namespace TravelAgency.Controllers
                 }
             }
            
-            return Json(bookedDays,JsonRequestBehavior.AllowGet);
+            return bookedDays;
+        }
+
+        public bool IsClashingStartDate(DateTime date, int tripId)
+        {
+           
+            var trip = _repository.GetTrip(tripId);
+            var legs = trip.Legs;
+           
+            foreach (var leg in legs)
+            {
+                if ((date.CompareTo(leg.StartDate) >= 0) && (date.CompareTo(leg.FinishDate) < 0))
+                    return true;
+            }
+            return false;
+
+        }
+
+        public bool IsClashingFinishDate(DateTime date, int tripId)
+        {
+            var trip = _repository.GetTrip(tripId);
+            var legs = trip.Legs;
+
+            foreach (var leg in legs)
+            {
+                if ((date.CompareTo(leg.StartDate) > 0) && (date.CompareTo(leg.FinishDate) <= 0))
+                    return true;
+            }
+            return false;
+
+        }
+
+        public bool IsClashing(Leg newLeg)
+        {
+            var trip = _repository.GetTrip(newLeg.TripId);
+            var legs = trip.Legs;
+            if (trip.Complete)
+                return true;
+            foreach (var leg in legs)
+            {
+                if (newLeg.StartDate >= leg.StartDate && newLeg.StartDate < leg.FinishDate)
+                    return true;
+                if (newLeg.FinishDate > leg.StartDate && newLeg.FinishDate <= leg.FinishDate)
+                    return true;
+                if (newLeg.StartDate < leg.StartDate && newLeg.FinishDate > leg.FinishDate)
+                    return true;
+               
+            } 
+            return false;
         }
 
         public ActionResult GetLegPicture(string cityName)

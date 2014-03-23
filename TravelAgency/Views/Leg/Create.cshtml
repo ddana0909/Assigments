@@ -8,7 +8,7 @@
 </head>
 
 @section scripts
-    {
+{
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <script>
@@ -18,78 +18,67 @@
 
         });
 
-        var unavailableDates=[];
-        var startDate;
-        var finishDate;
+        document.onload = getTimeLine;
 
-        function unavailable(date) {
-            var dmy = date.getDate() + "/0" + (date.getMonth() + 1) + "/" + date.getFullYear();
-            if ($.inArray(dmy, unavailableDates) == -1) {
-                return [true, ""];
+        function getTimeLine() {
+            var id = $("#TripId").val();
+            if (id == "") {
+                document.getElementById("timeline").innerHTML = "";
+                document.getElementById("title").innerHTML = "";
             } else {
-                return [false, "", "Another trip is planned here"];
+                $.ajax({
+                    url: '@Url.Action("GetProgressBar", "Home")',
+                    data: { tripId: id },
+                    success: function (data) {
+                        $("#timeline").html(data);
+
+                        var xText = $("#TripId :selected").text();
+                        document.getElementById("title").innerHTML = "";
+                        $("<div><h2>" + xText + "</h2></div>").appendTo("#title");
+                    }
+                });
             }
         }
-
-        function getBookedDays(id) {
-            $.ajax({
-
-                url: '/Leg/GetBookedDays',
-                data: { tripId: id },
-                success: function (data) {
-                    startDate = data[0];
-                    finishDate = data[1];
-                    data.shift();
-                    data.shift();
-                    unavailableDates = [];
-                    unavailableDates = unavailableDates.concat(data);
-                    initDatePicker();
-                }
-            });
-           
-        }
-
-        function initDatePicker()
-        {
-            $('#date').datepicker({
-                dateFormat: 'dd/mm/yy',
-                minDate: startDate,
-                maxDate: finishDate,
-                constrainInput: true,
-                beforeShowDay: unavailable
-            });
-        }
-        
     </script>
-
+    @Scripts.Render("~/bundles/jqueryval")  
 }
 <style>
     .spaceIt {
         margin-bottom: 20px;
         margin-left: 70px;
     }
+
     .spaceTop {
         margin-top: 50px;
     }
-
 </style>
 
+
 <div class="row spaceTop">
-    
+                        
+    <div id="title"></div>    
+    <div id="timeline"></div>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
         <div class=" col-md-offset-3 col-md-6 well-lg well ">
+            @{
+        if (@ViewBag.ErrorMessage != null)
+        {
+            <h4 class="text-danger text-center">@ViewBag.ErrorMessage</h4>
+         
+        }
+            }
             <fieldset>
                 <legend>Leg</legend>
 
-                <div class="form-group">
+                <div class="form-group">  
 
                     @Html.LabelFor(model => model.Trip.Id)
                     @Html.DropDownList("TripId",
                         new SelectList(ViewBag.TripList, "id", "value", 0), "Select a trip",
-                        new { @class = "form-control ", onchange = "getBookedDays(value)" })
+                        new { @class = "form-control ", @onchange = "getTimeLine()" })
                     @Html.ValidationMessageFor(model => model.TripId, null, new { @class = "text-danger" })
                 </div>
 
@@ -107,7 +96,7 @@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.StartDate)
-                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", id = "date" })
+                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", id = "datepicker" })
                     @Html.ValidationMessageFor(model => model.StartDate, null, new { @class = "text-danger" })
                 </div>
 
@@ -122,8 +111,9 @@
                     <input class=" col-md-12 btn btn-info" type="submit" value="Add New Leg" />
                 </p>
             </fieldset>
-
+            
         </div>
+  
     }
 </div>
 

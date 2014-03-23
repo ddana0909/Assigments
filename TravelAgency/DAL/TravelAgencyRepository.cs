@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web.UI.WebControls;
@@ -43,18 +43,17 @@ namespace TravelAgency.DAL
 
         public int GetNoGuestsOnTrip(int tripId)
         {
-            var guestReg = Entities.GuestRegistrations.Where(r => r.Leg.TripId == tripId);
-                 
-            return  Enumerable.Count(guestReg.Select(registration => registration.GuestId), guestId => guestReg.Where(g => g.GuestId == guestId).Distinct().Count() > 2);
-
-            /*var numbeofGuests = 0;
-            foreach (var registration in guestReg)
+            var guestReg = Entities.GuestRegistrations.Where(r => r.Leg.TripId == tripId);     
+            var guests = guestReg.Select(g => g.GuestId).Distinct();
+            var numbeofGuests = 0;
+            foreach (var guest in guests)
             {
-                var guestId = registration.GuestId;
-                if (guestReg.Where(g => g.GuestId == guestId).Distinct().Count() > 2)
+                
+                if (guestReg.Where(g => g.GuestId == guest).Distinct().Count() >= 2)
                     numbeofGuests++;
 
-            }*/      
+            }
+            return numbeofGuests;
         }
 
         public IQueryable<Guest> GetGuests()
