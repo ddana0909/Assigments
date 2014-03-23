@@ -1,5 +1,11 @@
 ﻿@model TravelAgency.Models.GuestRegistration
 
+<style>
+    .spaceBottom {
+        margin-bottom: 5%;
+    }   
+</style>
+
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
@@ -20,16 +26,17 @@
             <div class="col-md-10">
                 @Html.LabelFor(model => model.GuestId)
                 @Html.DropDownList("GuestId",
-                          new SelectList(ViewBag.GuestList, "id", "value", 0), "Select a Guest",
-                          new { @class = "form-control " })
+                    new SelectList(ViewBag.GuestList, "id", "value", 0), "Select a Guest",
+                    new { @class = "form-control " })
                 @Html.ValidationMessageFor(model => model.GuestId,null, new{@class="text-danger"})
                 <br/>
-                <p>
-                    <input type="submit" class="btn btn-success" value="Add" />
-                </p>
-                <br/>
+                <div class="col-md-3 spaceBottom">
+                    <input type="submit" class="btn btn-success" value="Add" />                  
+                </div>
             </div>
+
         </div>
     </fieldset>
 }
+
 

@@ -6,17 +6,29 @@
 
 @section scripts
 {
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
     <script type="text/javascript">
 
-        $(function() {
+        $(function () {
             $("[data-toggle='tooltip']").tooltip();
         });
+        
+        function showGuests(id) {
+            $.ajax({
+                url: '@Url.Action("GetGuestsOnLeg")',
+                data: { legId: id },
+                success: function (data) {
+                    $('#guestsModal').modal("show");
+                    $("#guestsDetails").html(data).modal("show");
+                }
+            });
+        }
 
         function getTimeLine(id) {
             $.ajax({
                 url: '@Url.Action("GetProgressBar")',
                 data: { tripId: id },
-                success: function(data) {
+                success: function (data) {
                     $('#timeline_' + id).html(data);
                     $("[data-toggle='tooltip']").tooltip();
                 }
@@ -26,15 +38,38 @@
         function getTripDetails(tripId) {
             getTimeLine(tripId);
             $.ajax({
-                url: '@Url.Action("TripDetails")',
-                data: { tripId: tripId },
-                success: function(data) {
-                    $('#m_' + tripId).html(data);
+                url: "api/LegApi/" + tripId,
+                type: "Get",
+                success: function (data) {
+                    $('#m_' + tripId).empty();
+
+                    $("<div id='guestsModal' class='modal fade' role='dialog' aria-hidden='true'><br /><br />" +
+                        "<br /> <div class='col-md-offset-4 col-md-4' id='guestsDetails'></div></div>").appendTo('#m_' + tripId);
+
+                    for (var i = 0; i < data.length; i++) {
+                        $("<div class='row' id='" + data[i].Id + "'>" +
+                             "<div class='col-md-2 text-right' >" +
+                                   "<div class='btn btn-info btn-xs'>" + (i + 1) + "</div>" +
+                            "</div>" +
+                            "<div class='col-md-9'>" +
+                            "<strong>" + data[i].StartLocation + " - " + data[i].FinishLocation + " </strong>" +
+                            +new Date(data[i].StartDate).getDay() + "-" +
+                             new Date(data[i].FinishDate).toLocaleDateString() +
+                            "</div>" +
+                            "<div class='col-md-1'>" +
+                                "<span class='badge' onclick=' showGuests('" + data[i].Id + "') style='cursor: pointer'>" +
+                                    data[i].x + " Guests" +
+                                 "</span>" +
+                            "</div>" +
+                        "</div>" +
+                        "<br/>"
+                            ).appendTo('#m_' + tripId);
+
+                    }
                 }
             });
-        }
 
-  
+        }
 
     </script>
 }
@@ -59,8 +94,8 @@
 {
     <div class="row" id="@item.Id" onclick=" getTripDetails(@item.Id)">
         <div class="col-md-4">
-            <br/>
-           
+            <br />
+
             <img src="@Url.Content(item.PicturePath)" alt="Album Picture" />
         </div>
         <div class="col-md-3">
@@ -143,13 +178,14 @@
         </div>
         <div class="col-md-5" id="m_@item.Id"></div>
     </div>
-    <div class="row"  >
+    <div class="row">
         <div class="col-md-7" id="timeline_@item.Id">
-            
         </div>
     </div>
-    <br/>
+    <br />
     <br />
 }
+
+
 
 

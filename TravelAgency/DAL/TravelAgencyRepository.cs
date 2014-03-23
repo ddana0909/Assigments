@@ -91,9 +91,36 @@ namespace TravelAgency.DAL
             Entities.SaveChanges();
         }
 
+        public void AddGuest(Guest guest)
+        {
+            Entities.Guests.Add(guest);
+            Entities.SaveChanges();
+        }
+
+        public Guest GetGuestById(int id)
+        {
+            return Entities.Guests.Find(id);
+        }
+
+        public IQueryable<object> GetLegsApi(int id)
+        {
+             var legs = from l in Entities.Legs 
+                           where l.TripId==id
+                           select new {
+                               l.StartDate, 
+                                     l.FinishDate,
+                                     l.StartLocation,
+                                     l.FinishLocation,
+                                     l.TripId,
+                                     l.Id,
+                                     x=l.LegRegistrations.Count}; 
+                return legs; 
+        }
+
         public void Dispose()
         {
             Entities.Dispose();
         }
+
     }
 }

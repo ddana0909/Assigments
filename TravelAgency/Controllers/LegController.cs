@@ -127,11 +127,8 @@ namespace TravelAgency.Controllers
         {
             var legs = _repository.GetLegsForTrip(tripId);
             var trip = _repository.GetTrip(tripId);
-            var bookedDays = new List<String>();
+            var bookedDays = new List<String> {trip.StartDate.ToShortDateString(), trip.FinishDate.ToShortDateString()};
 
-            bookedDays.Add(trip.StartDate.ToShortDateString());
-            bookedDays.Add(trip.FinishDate.ToShortDateString());
-            
             foreach (var leg in legs)
             {
                 var aux = leg.StartDate;
@@ -145,34 +142,6 @@ namespace TravelAgency.Controllers
             return bookedDays;
         }
 
-        public bool IsClashingStartDate(DateTime date, int tripId)
-        {
-           
-            var trip = _repository.GetTrip(tripId);
-            var legs = trip.Legs;
-           
-            foreach (var leg in legs)
-            {
-                if ((date.CompareTo(leg.StartDate) >= 0) && (date.CompareTo(leg.FinishDate) < 0))
-                    return true;
-            }
-            return false;
-
-        }
-
-        public bool IsClashingFinishDate(DateTime date, int tripId)
-        {
-            var trip = _repository.GetTrip(tripId);
-            var legs = trip.Legs;
-
-            foreach (var leg in legs)
-            {
-                if ((date.CompareTo(leg.StartDate) > 0) && (date.CompareTo(leg.FinishDate) <= 0))
-                    return true;
-            }
-            return false;
-
-        }
 
         public bool IsClashing(Leg newLeg)
         {
@@ -201,9 +170,6 @@ namespace TravelAgency.Controllers
                 select p).Pages.Select(page =>page.images().Select(x=>x.title).ToList()
                    ).ToEnumerable();
    
-            
-
-            //return View(pages.FirstOrDefault());
             return View(query);
         }
   
